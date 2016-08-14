@@ -29,6 +29,7 @@ gem "capybara"
 gem "database_cleaner"
 gem "selenium-webdriver"
 gem "bower-rails"
+gem "angular-rails-templates"
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
