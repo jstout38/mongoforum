@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   root to: 'application#angular'
   resources :sub_forums, only: [:index, :show] do
-    resources :threads do
+    resources :forum_threads do
       resources :posts
     end
   end
