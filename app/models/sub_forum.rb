@@ -9,7 +9,7 @@ class SubForum
   	res = super
 
   	res["_id"] = res["_id"].to_s
-  	res["sub_forum_id"] = res["sub_forum_id"].to_s
+  	
   	res
   end
   

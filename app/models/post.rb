@@ -7,7 +7,6 @@ class Post
   field :downvotes, type: Integer, default: 0
 
   belongs_to :user, foreign_key: "_id"
-  belongs_to :forum_thread, foreign_key: "_id"
-  belongs_to :sub_forum, foreign_key: "_id"
+  belongs_to :forum_thread, foreign_key: "forum_thread_id" 
   
 end

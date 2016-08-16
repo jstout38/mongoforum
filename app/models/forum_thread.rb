@@ -4,7 +4,7 @@ class ForumThread
 
   field :subject, type: String
 
-  has_many :posts, foreign_key: "post._id", order: :"post.created_at"
+  has_many :posts
   belongs_to :sub_forum, foreign_key: "sub_forum_id"
   belongs_to :user, foreign_key: "_id"
 

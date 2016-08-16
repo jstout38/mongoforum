@@ -3,10 +3,18 @@ angular.module('stoutForum')
  '$scope',
  'forum_threads',
  'forum_thread',
- function($scope, forum_threads, forum_thread){
+ 'posts',
+ function($scope, forum_threads, forum_thread, posts){
    
    $scope.forum_thread = forum_thread;
-   
+   $scope.posts = posts.posts
+   $scope.addPost = function(){
+      if(!$scope.body || $scope.body === '') {return;}
+      posts.create({
+         body: $scope.body         
+      }, $scope.forum_thread);
+      $scope.body = '';
+   };
    //$scope.addPost = function(){
    //	 if(!$scope.title || $scope.title === '') { return; }
    //	 $scope.posts.push({title: $scope.title, link: $scope.link, upvotes: 0, comments: [ {author: 'Joe', body: 'Cool post!', upvotes: 0}, {author: 'Bob', body: 'Great idea but everything is wrong!', upvotes: 0}]});

@@ -39,10 +39,19 @@ angular.module('stoutForum', ['ui.router', 'templates'])
   		    controller: 'ForumThreadCtrl',
           resolve: {
             forum_thread: ['$stateParams', 'forum_threads', function($stateParams, forum_threads) {
-              return forum_threads.get($stateParams.id);
+              return forum_threads.get($stateParams.id, $stateParams.sub_forum_id);
+            }],
+            postPromise: ['$stateParams', 'posts', function($stateParams, posts){
+              return posts.getAll($stateParams.sub_forum_id, $stateParams.id);
             }]
           }
-  		  });
+  		  })
+        .state('posts', {
+          url: '/sub_forums/{sub_forum_id}/forum_threads/{forum_thread_id}/posts',
+          templateUrl: 'posts/_posts.html',
+          controller: 'PostCtrl',
+
+        });
 
   		$urlRouterProvider.otherwise('home');
   	}]);

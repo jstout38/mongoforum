@@ -3,7 +3,7 @@
   	  	</div>
 
   	  	<div ng-repeat="forum_thread in forum_threads">
-  		      {{forum_thread.subject}}
+  		      <a href="#/sub_forums/{{sub_forum._id}}/forum_threads/{{forum_thread._id}}">{{forum_thread.subject}}</a> - {{forum_thread.created_at}}
   	  	</div>
   	
 
