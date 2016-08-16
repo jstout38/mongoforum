@@ -22,12 +22,15 @@ angular.module('stoutForum', ['ui.router', 'templates'])
           resolve: {
             sub_forum: ['$stateParams', 'sub_forums', function($stateParams, sub_forums) {
               return sub_forums.get($stateParams.id);
-            }]//,
+            }],
           //},
           //resolve: {
             //forum_threads: ['$stateParams', 'forum_threads', function($stateParams, forum_threads) {
             //  return forum_threads.getAll($stateParams.id);
             //}]
+            postPromise: ['$stateParams', 'forum_threads', function($stateParams, forum_threads){
+              return forum_threads.getAll($stateParams.id);
+            }]
           }
         })
         .state('forum_threads', {

@@ -1,7 +1,12 @@
 class ForumThreadsController < ApplicationController
 
 	def index
-	  respond_with ForumThread.where(:sub_forum_id => params[:sub_forum_id])
+	  @sub_forum = SubForum.find(params[:sub_forum_id])
+	  respond_with ForumThread.where(sub_forum_id: @sub_forum)
+	  
+	  #respond_with ForumThread.all
+	  #_id = BSON::ObjectId.from_string(params[:sub_forum_id])
+	  #respond_with ForumThread.where(:sub_forum_id => _id)
 	end
 
 	def show
@@ -10,12 +15,14 @@ class ForumThreadsController < ApplicationController
 
 	def create
 	  @sub_forum = SubForum.find(params[:sub_forum_id])
-	  @forum_thread = @sub_forum.forum_threads.build({subject: params[:title]})	  
-	  respond_with @sub_forum, @forum_thread
+	  @forum_thread = @sub_forum.forum_threads.build({subject: params[:title]})
+	  @forum_thread.save
+	  
+	  respond_with @forum_thread, location: nil
 	end
 
 	#private
 	#def post_params
-	#  params.require(:forum_thread)
+	#  params.require(:post).permit(:title, :sub_forum_id)
 	#end
 end

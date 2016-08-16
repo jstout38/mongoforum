@@ -6,13 +6,13 @@ angular.module('stoutForum')
  'forum_threads',
  function($scope, sub_forums, sub_forum, forum_threads){
    
-   $scope.sub_forum = sub_forum;
-   $scope.sub_forum_id = sub_forum._id;
+   $scope.sub_forum = sub_forum;   
+   $scope.forum_threads = forum_threads.forum_threads;
    $scope.addThread = function(){
       if(!$scope.title || $scope.title === '') {return;}
       forum_threads.create({
          title: $scope.title         
-      }, $scope.sub_forum_id);
+      }, $scope.sub_forum);
       $scope.title = '';
    };
 }
