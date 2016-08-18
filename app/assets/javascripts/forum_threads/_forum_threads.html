@@ -4,7 +4,7 @@
         </div>
 
         <div ng-repeat="post in posts">
-            {{post.body}} - {{post.created_at}}
+            {{post.body}} - Created by {{post.user.username}} at {{post.created_at}}
         </div>
     
 

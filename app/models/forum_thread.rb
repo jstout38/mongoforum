@@ -6,7 +6,7 @@ class ForumThread
 
   has_many :posts
   belongs_to :sub_forum, foreign_key: "sub_forum_id"
-  belongs_to :user, foreign_key: "_id"
+  embeds_one :user
 
   def as_json(options = {})
   	res = super

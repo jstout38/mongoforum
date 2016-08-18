@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+	before_filter :authenticate_user!, only: [:create]
 
 	def index
 	  @thread = ForumThread.find(params[:forum_thread_id])
@@ -15,7 +16,7 @@ class PostsController < ApplicationController
 
 	def create
 	  @forum_thread = ForumThread.find(params[:forum_thread_id])
-	  @post = @forum_thread.posts.build({body: params[:body]})
+	  @post = @forum_thread.posts.build({body: params[:body], user: current_user})
 	  @post.save
 	  
 	  respond_with @post, location: nil

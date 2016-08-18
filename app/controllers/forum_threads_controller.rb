@@ -1,4 +1,5 @@
 class ForumThreadsController < ApplicationController
+	before_filter :authenticate_user!, only: [:create]
 
 	def index
 	  @sub_forum = SubForum.find(params[:sub_forum_id])
@@ -15,7 +16,7 @@ class ForumThreadsController < ApplicationController
 
 	def create
 	  @sub_forum = SubForum.find(params[:sub_forum_id])
-	  @forum_thread = @sub_forum.forum_threads.build({subject: params[:title]})
+	  @forum_thread = @sub_forum.forum_threads.build({subject: params[:title], user: current_user})
 	  @forum_thread.save
 	  
 	  respond_with @forum_thread, location: nil

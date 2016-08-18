@@ -6,7 +6,7 @@ class Post
   field :upvotes, type: Integer, default: 0
   field :downvotes, type: Integer, default: 0
 
-  belongs_to :user, foreign_key: "_id"
+  embeds_one :user#, foreign_key: "user_id"
   belongs_to :forum_thread, foreign_key: "forum_thread_id" 
   
 end
