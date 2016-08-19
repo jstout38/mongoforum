@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
   devise_for :users
+  resources :users_admin, :controller => 'users' 
   root to: 'application#angular'
   resources :sub_forums, only: [:index, :show] do
     resources :forum_threads do

@@ -3,10 +3,38 @@
           <h1>{{forum_thread.subject}}</h1>
         </div>
 
-        <div ng-repeat="post in posts">
-            {{post.body}} - Created by {{post.user.username}} at {{post.created_at}}
-        </div>
-    
+        <table class="col-md-12">
+        
+            <tr id="postContainer" ng-repeat="post in posts">
+              <td class="col-md-2">
+                <div id="avatarContainer">
+                  <img ng-if="hasAvatar(post)" id="avatar" width="100" src="{{post.user.avatar}}">
+                </div>
+                <p id="userName">{{post.user.username}}</p>
+                  <div id="socialMedia">
+                  <a ng-if="hasTwitter(post)" class="btn btn-social-icon btn-m btn-twitter" href="{{post.user.twitter}}">
+                    <span class="fa fa-twitter"></span>
+                  </a>
+               
+                  <a ng-if="hasFacebook(post)" class="btn btn-social-icon btn-m btn-facebook" href="{{post.user.facebook}}">
+                    <span class="fa fa-facebook"></span>
+                  </a>                 
+
+                 <a ng-if="hasPinterest(post)" class="btn btn-social-icon btn-m btn-pinterest" href="{{post.user.pinterest}}">
+                    <span class="fa fa-pinterest"></span>
+                  </a>                 
+
+                 <a ng-if="hasLinkedIn(post" class="btn btn-social-icon btn-m btn-linkedin" href="{{post.user.linked_in}}">
+                    <span class="fa fa-linkedin"></span>
+                  </a>
+                 
+               </div>
+
+              </td> 
+              <td id="postTextContainer" class="col-md-10"><p id="timeStamp">{{post.created_at}}</p><p>{{post.body}}<p></td>
+            </tr>
+        
+        </table>
 
         <form ng-submit="addPost()")>
       <input type="text" ng-model="body"></input>

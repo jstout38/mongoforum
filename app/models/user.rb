@@ -36,16 +36,16 @@ class User
   # field :locked_at,       type: Time
 
   
-  field :website, type: String
-  field :facebook, type: String
-  field :twitter, type: String
-  field :pinterest, type: String
-  field :linked_in, type: String
-  field :location, type: String
-  field :occupation, type: String
-  field :interests, type: String
+  field :website, type: String, default: ""
+  field :facebook, type: String, default: ""
+  field :twitter, type: String, default: ""
+  field :pinterest, type: String, default: ""
+  field :linked_in, type: String, default: ""
+  field :location, type: String, default: ""
+  field :occupation, type: String, default: ""
+  field :interests, type: String, default: ""
   field :birthday, type: Date
-  field :signature, type: String
-  field :avatar, type: String
+  field :signature, type: String, default: ""
+  field :avatar, type: String, default: ""
   
 end

@@ -71,6 +71,16 @@ angular.module('stoutForum', ['ui.router', 'templates', 'Devise'])
               $state.go('home');
             })
           }]
+        })
+        .state('users_admin', {
+          url: '/users_admin',
+          templateUrl: 'users_admin/_users_admin.html',
+          controller: 'UsersAdminCtrl',
+          resolve: {
+            postPromise: ['users_admin', function(users_admin){
+              return users_admin.getAll();
+            }]
+          }
         });
 
   		$urlRouterProvider.otherwise('home');

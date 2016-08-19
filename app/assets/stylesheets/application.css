@@ -11,9 +11,45 @@
  * file per style scope.
  *
  *= require bootstrap/dist/css/bootstrap
+ *= require bootstrap-social/bootstrap-social
+ *= require components-font-awesome/css/font-awesome
  *= require_tree .
  *= require_self
  */
 
-@import "bootstrap-sass-official/assets/stylesheets/bootstrap-sprockets";
-@import "bootstrap-sass-official/assets/stylesheets/bootstrap";
+@import 'https://fonts.googleapis.com/css?family=Baloo+Da';
+
+table, th, tr, td {
+	border: 1px solid black;
+}
+#postContainer {
+	height: 33vh;
+	vertical-align: top;
+	background-color: #F7E7CE;	
+}
+
+#avatarContainer {
+	vertical-align: middle;
+
+}
+
+#avatar {
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 5px;
+	margin-bottom: auto;
+	width: 15vw;
+}
+
+#timeStamp {
+	margin-top: 5px;
+}
+
+#socialMedia {
+	margin-bottom: 5px;
+}
+
+#userName {
+	font-family: 'Baloo Da', cursive; 
+	font-size: 200%;
+}
