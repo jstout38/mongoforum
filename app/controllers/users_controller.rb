@@ -8,8 +8,14 @@ class UsersController < ApplicationController
 	  respond_with SubForum.find(params[:id])
 	end
 
+	def update
+	  #@user = User.find(post_params[:user_id])
+	  current_user.update(post_params)
+	  respond_with @user, location: nil
+	end
+
 	private
 	def post_params
-	  params.require(:sub_forum)
+	  params.require(:user).permit(:id, :website, :facebook, :twitter, :linked_in, :location, :occupation, :interests, :birthday, :signature, :avatar)
 	end
 end

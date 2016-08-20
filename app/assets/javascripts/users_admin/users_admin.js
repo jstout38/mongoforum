@@ -7,7 +7,12 @@ angular.module('stoutForum')
   	  return $http.get('/users_admin.json').success(function(data){
   	  	angular.copy(data, o.users_admin)
   	  })
-  	};    
+  	};
+    o.update = function(body, user) {
+      return $http.put('/users_admin/' + user._id + '.json', body).success(function(data){
+        
+      });
+    };    
   	return o;
   }])
 /*.factory('sub_forum', [

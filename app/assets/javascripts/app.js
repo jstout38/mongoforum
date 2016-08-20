@@ -81,6 +81,16 @@ angular.module('stoutForum', ['ui.router', 'templates', 'Devise'])
               return users_admin.getAll();
             }]
           }
+        })
+        .state('users_admin_edit', {
+          url: '/users_admin/edit',
+          templateUrl: 'users_admin/_users_admin_edit.html',
+          controller: 'UsersAdminCtrl',
+          onEnter: ['$state', 'Auth', function($state, Auth) {
+            Auth.currentUser().then(function (){
+              $state.go('users_admin_edit');
+            })
+          }]
         });
 
   		$urlRouterProvider.otherwise('home');

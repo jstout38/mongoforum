@@ -47,5 +47,15 @@ class User
   field :birthday, type: Date
   field :signature, type: String, default: ""
   field :avatar, type: String, default: ""
+
+  embedded_in :post
+
+  def as_json(options = {})
+    res = super
+
+    res["_id"] = res["_id"].to_s
+    
+    res
+  end
   
 end
