@@ -16,15 +16,36 @@ class PostsController < ApplicationController
 
 	def create
 	  @forum_thread = ForumThread.find(params[:forum_thread_id])
-	  @post = @forum_thread.posts.build({body: params[:body], user: current_user})
+	  @post = @forum_thread.posts.create(post_params)
+	  @post.addUser(current_user)
 	  @post.save
 	  
 	  respond_with @post, location: nil
 	end
 
-	#private
-	#def post_params
-	#  params.require(:post).permit(:title, :sub_forum_id)
-	#end
+	def upvote
+	  @post = Post.find(params[:id])
+	  if @post.voters.include? params[:id]
+	  	@post.increment!(:upvotes)
+	  	@post.voters = @post.voters + params[:id]
+	  end
+
+	  respond_with @post
+	end
+
+	def downvote
+	  @post = Post.find(params[:id])
+	  if @post.voters.include? params[:id]
+	  	@post.increment!(:downvotes)
+	  	@post.voters = @post.voters + params[:id]
+	  end
+
+	  respond_with @post
+	end
+
+	private
+	def post_params
+	  params.require(:post).permit(:body, :forum_thread_id)
+	end
 
 end

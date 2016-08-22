@@ -48,7 +48,7 @@ class User
   field :signature, type: String, default: ""
   field :avatar, type: String, default: ""
 
-  embedded_in :post
+  has_many :posts
 
   def as_json(options = {})
     res = super
