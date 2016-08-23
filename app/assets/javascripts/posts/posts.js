@@ -15,8 +15,25 @@ angular.module('stoutForum')
   	//};
     o.create = function(body, forum_thread) {
       return $http.post('/sub_forums/' + forum_thread.sub_forum_id + '/forum_threads/' + forum_thread._id + '/posts.json', body).success(function(data){
+        
         o.posts.push(data);
       });
+    };
+    o.upvote = function(forum_thread, post) {
+      return $http.put('/sub_forums/' + forum_thread.sub_forum_id + '/forum_threads/' + forum_thread._id + '/posts/' + post._id + '/upvote.json')
+        .then(function(data){
+          if (data.status == 200) {
+            post.upvotes += 1;
+          }
+        });
+    };
+    o.downvote = function(forum_thread, post) {
+      return $http.put('/sub_forums/' + forum_thread.sub_forum_id + '/forum_threads/' + forum_thread._id + '/posts/' + post._id + '/downvote.json')
+        .then(function(data){
+          if (data.status == 200) {
+            post.downvotes += 1;
+          }
+        });
     };
   	return o;
   }]);

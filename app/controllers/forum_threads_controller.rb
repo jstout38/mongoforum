@@ -15,8 +15,10 @@ class ForumThreadsController < ApplicationController
 	end
 
 	def create
+	  
 	  @sub_forum = SubForum.find(params[:sub_forum_id])
-	  @forum_thread = @sub_forum.forum_threads.build({subject: params[:title], user: current_user})
+	  @forum_thread = @sub_forum.forum_threads.build({subject: params[:title]})
+	  @forum_thread.user = current_user
 	  @forum_thread.save
 	  
 	  respond_with @forum_thread, location: nil

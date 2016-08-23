@@ -31,7 +31,13 @@
                </div>
 
               </td> 
-              <td id="postTextContainer" class="col-md-10"><p id="timeStamp">{{post.created_at}}</p><p>{{post.body}}<p></td>
+              <td id="postTextContainer" class="col-md-10"><p id="timeStamp">{{post.created_at}}</p><p>{{post.body}}<p>
+                <div id="voting">                  
+                  <i class="fa fa-thumbs-up" aria-hidden="true" ng-click="incrementUpvotes(forum_thread, post)"></i> {{post.upvotes}}
+                  <i class="fa fa-thumbs-down" aria-hidden="true" ng-click="incrementDownvotes(forum_thread, post)"></i> {{post.downvotes}}
+                  
+                </div>
+              </td>
             </tr>
         
         </table>

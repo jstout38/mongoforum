@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+	before_action :set_post, only: [:show, :upvote, :downvote]
 	before_filter :authenticate_user!, only: [:create]
 
 	def index
@@ -11,7 +12,7 @@ class PostsController < ApplicationController
 	end
 
 	def show
-	  respond_with Post.find(params[:id])
+	  respond_with @post
 	end
 
 	def create
@@ -24,26 +25,51 @@ class PostsController < ApplicationController
 	end
 
 	def upvote
-	  @post = Post.find(params[:id])
-	  if @post.voters.include? params[:id]
-	  	@post.increment!(:upvotes)
-	  	@post.voters = @post.voters + params[:id]
+	  
+	  changed = false
+	  @user = current_user
+	  if (!@post.voters.include? @user._id) && (@user._id != @post.user._id)
+	  	@post.upvotes = @post.upvotes + 1
+	  	@post.voters << @user._id
+	  	@post.save
+	  	changed = true
 	  end
 
-	  respond_with @post
-	end
+	  respond_to do |format| 
+	  	if changed
+	  		format.json { render json: @post, status: :ok, location: nil }
+	  	else
+	  		format.json { render json: @post, status: :no_content, location: nil}
+	  	end
+	  end
+
+	end 
 
 	def downvote
-	  @post = Post.find(params[:id])
-	  if @post.voters.include? params[:id]
-	  	@post.increment!(:downvotes)
-	  	@post.voters = @post.voters + params[:id]
+	  changed = false
+	  @user = current_user
+	  if (!@post.voters.include? @user._id) && (@user._id != @post.user._id)
+	  	 @post.downvotes = @post.downvotes + 1
+	  	 @post.voters << @user._id
+	  	 @post.save
+	  	 changed = true
 	  end
 
-	  respond_with @post
+	  respond_to do |format|
+	  	if changed
+	  		format.json { render json: @post, status: :ok, location: nil }
+	  	else
+	  		format.json { render json: @post, status: :no_content, location: nil }
+	  	end
+	  end
 	end
 
 	private
+
+	def set_post
+	  @post = Post.find(params[:id])
+	end
+
 	def post_params
 	  params.require(:post).permit(:body, :forum_thread_id)
 	end
