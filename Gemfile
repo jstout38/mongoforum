@@ -31,6 +31,7 @@ gem "selenium-webdriver"
 gem "bower-rails"
 gem "angular-rails-templates"
 gem "angular_rails_csrf"
+gem "kaminari"
 gem "devise", "~> 3.4.0"
 
 # Use ActiveModel has_secure_password

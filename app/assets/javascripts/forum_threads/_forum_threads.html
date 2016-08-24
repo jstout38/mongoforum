@@ -31,11 +31,19 @@
                </div>
 
               </td> 
-              <td id="postTextContainer" class="col-md-10"><p id="timeStamp">{{post.created_at}}</p><p>{{post.body}}<p>
+              <td id="postTextContainer" class="col-md-10">
+                <div id="postWrapper">
+                  <p id="timeStamp">{{post.created_at}}</p><p>{{post.body}}<p>
+                <div ng-if="hasSignature(post)" id="signatureWrapper">
+                  <p>____________________</p>
+                  {{post.user.signature}}
+                </div>
                 <div id="voting">                  
+                  <p>____________________</p>
+                  Like this post? 
                   <i class="fa fa-thumbs-up" aria-hidden="true" ng-click="incrementUpvotes(forum_thread, post)"></i> {{post.upvotes}}
-                  <i class="fa fa-thumbs-down" aria-hidden="true" ng-click="incrementDownvotes(forum_thread, post)"></i> {{post.downvotes}}
-                  
+                  <i class="fa fa-thumbs-down" aria-hidden="true" ng-click="incrementDownvotes(forum_thread, post)"></i> {{post.downvotes}}                  
+                </div>
                 </div>
               </td>
             </tr>

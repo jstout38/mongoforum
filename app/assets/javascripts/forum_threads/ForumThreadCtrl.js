@@ -45,6 +45,12 @@ angular.module('stoutForum')
       }
       return true;
    };
+   $scope.hasSignature = function(post){
+      if (post.user.signature == "") {
+         return false;
+      }
+      return true;
+   }
    $scope.incrementUpvotes = function(forum_thread, post) {
        posts.upvote(forum_thread, post);
      };

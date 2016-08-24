@@ -49,7 +49,7 @@ class User
   field :avatar, type: String, default: ""
 
   has_many :posts
-  has_many :threads
+  has_many :forum_threads
 
   def as_json(options = {})
     res = super

@@ -22,6 +22,11 @@
 table, th, tr, td {
 	border: 1px solid black;
 }
+
+table, tr {
+	height: 100%;
+}
+
 #postContainer {
 	height: 33vh;
 	vertical-align: top;
@@ -52,5 +57,9 @@ table, th, tr, td {
 #userName {
 	font-family: 'Baloo Da', cursive; 
 	font-size: 200%;
+}
+
+#voting {
+	;
 }
 

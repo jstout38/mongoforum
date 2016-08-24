@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+	before_filter :authenticate_user!, only: [:update]
 
 	def index
 	  respond_with User.all
@@ -10,7 +11,7 @@ class UsersController < ApplicationController
 
 	def update
 	  #@user = User.find(post_params[:user_id])
-	  current_user.update(post_params)
+	  @user = current_user.update(post_params)
 	  respond_with @user, location: nil
 	end
 

@@ -14,7 +14,7 @@ angular.module('stoutForum')
      	});
      	$scope.body = '';
      };
-     $scope.incrementUpvotes = function(comment) {
-       comment.upvotes += 1;
-     }
+     $scope.incrementUpvotes = function(post) {
+       post.upvote(post);
+     };
    }]);
