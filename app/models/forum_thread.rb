@@ -22,6 +22,7 @@ class ForumThread
     if res["last_post_time"]
       res["last_post_time"] = res["last_post_time"].strftime("%I:%M%p on %m/%d/%Y")
     end
+    res["sub_forum_name"] = SubForum.find(res["sub_forum_id"]).name
     #res["last_post"] = res["last_post"].as_json
     #res["last_post"] = res["last_post"].as_json
     #last_post = Post.where(forum_thread_id: res["_id"]).order_by(:created_at => :desc).first.as_json
