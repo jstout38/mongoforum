@@ -27,6 +27,29 @@ table, tr {
 	height: 100%;
 }
 
+.tableElementWrapper {
+  margin: 5px;
+  margin-bottom: 15px;
+}
+
+.centeredCell {
+  text-align: center;
+} 
+
+#forumListContainer {
+	
+	background-color: #F7E7CE;
+}
+
+#threadContainer {
+	background-color: #F7E7CE;
+}
+
+#forumName {
+	margin: 5px;
+	margin-bottom: 15px;
+}
+
 #postContainer {
 	height: 33vh;
 	vertical-align: top;
@@ -60,6 +83,6 @@ table, tr {
 }
 
 #voting {
-	;
+	
 }
 

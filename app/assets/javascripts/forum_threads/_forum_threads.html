@@ -33,7 +33,7 @@
               </td> 
               <td id="postTextContainer" class="col-md-10">
                 <div id="postWrapper">
-                  <p id="timeStamp">{{post.created_at}}</p><p>{{post.body}}<p>
+                  <p id="timeStamp">Posted at {{post.created_at}}</p><p>{{post.body}}<p>
                 <div ng-if="hasSignature(post)" id="signatureWrapper">
                   <p>____________________</p>
                   {{post.user.signature}}

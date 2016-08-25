@@ -57,6 +57,7 @@ class User
     res["_id"] = res["_id"].to_s
     
     res
+
   end
   
 end

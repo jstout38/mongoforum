@@ -17,10 +17,15 @@ class PostsController < ApplicationController
 
 	def create
 	  @forum_thread = ForumThread.find(params[:forum_thread_id])
+	  @sub_forum = SubForum.find(@forum_thread.sub_forum_id)
 	  @post = @forum_thread.posts.create(post_params)
-	  @post.addUser(current_user)
-	  @post.save
-	  
+	  @post.addUser(current_user)	  
+	  @post.save	  
+	  @forum_thread.add_last_post(@post)
+	  @forum_thread.save
+	  @sub_forum.add_last_post(@post)
+	  @sub_forum.save
+
 	  respond_with @post, location: nil
 	end
 

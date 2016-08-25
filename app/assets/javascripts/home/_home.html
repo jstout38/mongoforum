@@ -2,9 +2,33 @@
   	  	<div class="page-header">
   	  	  <h1>StoutForum</h1>
   	  	</div>
-  		<div ng-repeat="sub_forum in sub_forums">
-  		      <a href="#/sub_forums/{{sub_forum._id}}">Forum - {{sub_forum.name}}</a>
-  	  </div>
+  		<table class="col-md-12" id = "forumListContainer">
+  			<thead>
+  			  <th>
+  			  	<span class="tableElementWrapper">Forum Name</span>
+  			  </th>
+  			  <th class="centeredCell">
+  			  	<span class="tableElementWrapper">Threads</span>
+  			  </th>
+  			  <th>
+  			  	<span class="tableElementWrapper">Last Post</span>
+  			  </th>
+  			</thead>
+  			<tbody>
+  			<tr id="forumNameContainer" ng-repeat="sub_forum in sub_forums">
+  		      <td>
+  		      	<a id="forumName" class = "tableElementWrapper" href="#/sub_forums/{{sub_forum._id}}">Forum - {{sub_forum.name}}</a>
+  		      </td>
+  		      <td class = "col-md-1 centeredCell">
+  		      	<span class = "tableElementWrapper">{{sub_forum.forum_threads.length}}</span>
+  		      </td>
+  		      <td class = "col-md-5">
+  		      	<span class = "tableElementWrapper">Last post at {{sub_forum.last_post_time}} by 
+  		      	{{sub_forum.last_post_user}}</span>
+  		      </td>
+  	  		</tr>
+  	  	</tbody>
+  	  	<table>
   	
   	
   	  

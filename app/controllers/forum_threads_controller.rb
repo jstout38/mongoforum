@@ -3,7 +3,7 @@ class ForumThreadsController < ApplicationController
 
 	def index
 	  @sub_forum = SubForum.find(params[:sub_forum_id])
-	  respond_with ForumThread.where(sub_forum_id: @sub_forum)
+	  respond_with ForumThread.where(sub_forum_id: @sub_forum).order_by(:"last_post_time" => "desc")
 	  
 	  #respond_with ForumThread.all
 	  #_id = BSON::ObjectId.from_string(params[:sub_forum_id])

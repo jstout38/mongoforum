@@ -15,7 +15,7 @@ angular.module('stoutForum')
   	};
     o.create = function(thread, sub_forum) {
       return $http.post('/sub_forums/' + sub_forum._id + '/forum_threads.json', thread).success(function(data){
-        o.forum_threads.push(data);
+        o.forum_threads.unshift(data);
       });
     };
   	return o;
