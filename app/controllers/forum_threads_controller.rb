@@ -20,7 +20,15 @@ class ForumThreadsController < ApplicationController
 	  @forum_thread = @sub_forum.forum_threads.build({subject: params[:title]})
 	  @forum_thread.user = current_user
 	  @forum_thread.save
+	  @post = @forum_thread.posts.create({body: params[:post]})
+	  @post.addUser(current_user)
+	  @post.save	  
+	  @forum_thread.add_last_post(@post)
+	  @sub_forum.add_last_post(@post)
+	  @forum_thread.save
+	  @sub_forum.save 
 	  
+
 	  respond_with @forum_thread, location: nil
 	end
 

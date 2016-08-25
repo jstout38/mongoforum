@@ -1,5 +1,5 @@
 <div class="page-header">
-  	  	  <h1>Forum - {{sub_forum.name}}</h1>
+  	  	  <h1><a href="#">Forum</a> - {{sub_forum.name}}</h1>
   	  	</div>
 
   	  	<table class="col-md-12" id = "threadContainer">
@@ -35,9 +35,16 @@
       </tbody>
       </table>
   	
-
-  	  	<form ng-submit="addThread()")>
-  		<input type="text" ng-model="title"></input>
+      <div ng-if="isLoggedIn()" id="threadCreationContainer">
+  	  	<h3 id="threadIntro">Add a new thread!</h3>
+        <form ng-submit="addThread()">
+  		<div class="input-group">
+    <input type="text" class="form-control" placeholder="Topic" ng-model="thread.topic">
+  </div>
+      <div class="input-group">
+      <textarea rows="10" cols="90" class="form-control" placeholder="Post" ng-model="thread.post"></textarea>
+      </div>
   		<button type="submit">Post</button>
 		</form>
+  </div>
   		

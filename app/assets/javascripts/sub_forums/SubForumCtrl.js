@@ -4,16 +4,22 @@ angular.module('stoutForum')
  'sub_forums',
  'sub_forum',
  'forum_threads',
- function($scope, sub_forums, sub_forum, forum_threads){
+ 'Auth',
+ function($scope, sub_forums, sub_forum, forum_threads, Auth){
    
    $scope.sub_forum = sub_forum;   
    $scope.forum_threads = forum_threads.forum_threads;
+   $scope.thread = {topic: '', post: ''}
    $scope.addThread = function(){
-      if(!$scope.title || $scope.title === '') {return;}
+      if(!$scope.thread.topic || $scope.thread.topic === '') {return;}
       forum_threads.create({
-         title: $scope.title         
+         title: $scope.thread.topic,
+         post: $scope.thread.post          
       }, $scope.sub_forum);
       $scope.title = '';
+   };
+   $scope.isLoggedIn = function(){
+      return Auth.isAuthenticated();   
    };
 }
    //$scope.addPost = function(){

@@ -50,9 +50,14 @@
         
         </table>
 
-        <form ng-submit="addPost()")>
-      <input type="text" ng-model="body"></input>
+        <div id="createPostContainer" ng-if="isLoggedIn()">
+          <h3>Add a new post!</h3>
+        <form ng-submit="addPost()">
+      <div class="input-group">
+      <textarea rows="10" cols="90" class="form-control" ng-model="$parent.body"></textarea>
+      </div>
       <button type="submit">Post</button>
     </form>
+  </div>
        
   	

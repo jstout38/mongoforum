@@ -27,6 +27,16 @@ table, tr {
 	height: 100%;
 }
 
+table {
+	padding-bottom: 15px;
+	border-spacing: 50px;
+	margin-bottom: 30px;
+}
+
+input {
+	padding-bottom: 10px;
+}
+
 .tableElementWrapper {
   margin: 5px;
   margin-bottom: 15px;
@@ -81,8 +91,17 @@ table, tr {
 	font-family: 'Baloo Da', cursive; 
 	font-size: 200%;
 }
-
-#voting {
 	
+#threadCreationContainer {
+	padding-top: 50px;
 }
 
+#threadIntro {
+	padding-top: 50px;
+}
+
+
+
+.form-control {
+	margin-bottom: 10px;
+}

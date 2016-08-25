@@ -4,11 +4,13 @@ angular.module('stoutForum')
  'forum_threads',
  'forum_thread',
  'posts',
- function($scope, forum_threads, forum_thread, posts){
+ 'Auth',
+ function($scope, forum_threads, forum_thread, posts, Auth){
    
    $scope.forum_thread = forum_thread;
-   $scope.posts = posts.posts
+   $scope.posts = posts.posts;   
    $scope.addPost = function(){
+      console.log($scope.body);
       if(!$scope.body || $scope.body === '') {return;}
       posts.create({
          body: $scope.body         
@@ -18,7 +20,7 @@ angular.module('stoutForum')
    $scope.hasAvatar = function(post){
       if (post.user.avatar == "") {
          return false;
-      }
+      }      
       return true;
    };
    $scope.hasTwitter = function(post){
@@ -50,12 +52,15 @@ angular.module('stoutForum')
          return false;
       }
       return true;
-   }
+   };
    $scope.incrementUpvotes = function(forum_thread, post) {
        posts.upvote(forum_thread, post);
      };
    $scope.incrementDownvotes = function(forum_thread, post) {
       posts.downvote(forum_thread, post);
+   };
+   $scope.isLoggedIn = function(){
+      return Auth.isAuthenticated();   
    };
    //$scope.addPost = function(){
    //	 if(!$scope.title || $scope.title === '') { return; }
