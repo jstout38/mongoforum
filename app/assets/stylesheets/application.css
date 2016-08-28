@@ -13,33 +13,33 @@
  *= require bootstrap/dist/css/bootstrap
  *= require bootstrap-social/bootstrap-social
  *= require components-font-awesome/css/font-awesome
+ #= require angular-material
  *= require_tree .
  *= require_self
  */
 
 @import 'https://fonts.googleapis.com/css?family=Baloo+Da';
 
-table, th, tr, td {
+
+.forumTable > td {
+	border: 1px solid black !important;
+	background-color: #F7E7CE;	
+}
+
+.forumHeader {
 	border: 1px solid black;
+	background-color: #F7E7CE;
 }
 
-table, tr {
-	height: 100%;
-}
-
-table {
-	padding-bottom: 15px;
-	border-spacing: 50px;
+.forumTable {	
 	margin-bottom: 30px;
-}
-
-input {
-	padding-bottom: 10px;
+	border: 1px solid black;
+	background-color: #F7E7CE;
 }
 
 .tableElementWrapper {
   margin: 5px;
-  margin-bottom: 15px;
+  margin-bottom: 15px;  
 }
 
 .centeredCell {
@@ -100,8 +100,11 @@ input {
 	padding-top: 50px;
 }
 
-
-
 .form-control {
 	margin-bottom: 10px;
 }
+
+
+
+
+

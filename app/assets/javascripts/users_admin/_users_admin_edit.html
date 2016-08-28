@@ -1,37 +1,99 @@
 <div class="page-header">
-	<h1>Edit</h1>
+	<h1>Update Your Profile</h1>
 </div>
 
-<form ng-submit="update()">
-	<div class = "input-group">
-		<input type="text" class="form-control" placeholder="Website" ng-model="user.website">
-	</div>
-	<div class="input-group">
-		<input type="text" class="form-control" placeholder="Facebook" ng-model="user.facebook">
-	</div>
-	<div class="input-group">
-		<input type="text" class="form-control" placeholder="Twitter" ng-model="user.twitter">
-	</div>
-	<div class="input-group">
-		<input type="text" class="form-control" placeholder="LinkedIn" ng-model="user.linked_in">
-	</div>
-	<div class="input-group">
-		<input type="text" class="form-control" placeholder="Location" ng-model="user.location">
-	</div>
-	<div class="input-group">
-		<input type="text" class="form-control" placeholder="Occupation" ng-model="user.occupation">
-	</div>
-	<div class="input-group">
-		<input type="text" class="form-control" placeholder="Interests" ng-model="user.interests">
-	</div>
-	<div class="input-group">
-		<input type="date" class="form-control" placeholder="Birthday" ng-model="user.birthday">
-	</div>
-	<div class="input-group">
-		<input type="text" class="form-control" placeholder="Signature" ng-model="user.signature">
-	</div>
-	<div class="input-group">
-		<input type="text" class="form-control" placeholder="Avatar URL" ng-model="user.avatar">
-	</div>
-	<input type="submit" class="btn btn-default" value="Update">
+<md-content layout-padding>
+<form ng-submit="update()" class="form-group">
+		<table class="col-md-6 col-md-offset-3">
+			
+			<tr>
+				<td class="col-md-4"> 
+					Website URL:
+				</td>
+				<td>
+					<input type="text" class="form-control" placeholder="http://" value="{{user.website}}" ng-model="user.website">
+				</td>
+			</tr>
+			<tr>
+				<td class="col-md-4">
+					Facebook URL:
+				</td>
+				<td>
+					<input type="text" class="form-control" placeholder="http://" value="{{user.facebook}}" ng-model="user.facebook">
+				</td>
+			</tr>
+			<tr>
+				<td class="col-md-4">
+					Twitter URL:
+				</td>
+				<td>
+					<input type="text" class="form-control" placeholder="http://" value="{{user.twitter}}" ng-model="user.twitter">
+				</td>
+			</tr>
+			<tr>
+				<td class="col-md-4">
+					LinkedIn URL:
+				</td>
+				<td>
+					<input type="text" class="form-control" placeholder="http://" value="{{user.twitter}}" ng-model="user.linked_in">
+				</td>
+			</tr>
+			<tr>
+				<td class="col-md-4">
+					Location:
+				</td>
+				<td>
+					<input type="text" class="form-control" value="{{user.location}}" ng-model="user.location">
+				</td>
+			</tr>
+			<tr>
+				<td class="col-md-4">
+					Occupation:
+				</td>
+				<td>
+					<input type="text" class="form-control" value="{{user.occupation}}" ng-model="user.occupation">
+				</td>
+			</tr>
+			<tr>
+				<td class="col-md-4">
+					Interests:
+				</td>
+				<td>
+					<input type="text" class="form-control" value="{{user.interests}}" ng-model="user.interests">
+				</td>
+			</tr>
+			<tr>
+				<td class="col-md-4">
+					Birthdate:
+				</td>
+				<td>
+					<md-datepicker value={{user.birthday}} ng-model="user.birthday"></md-datepicker>
+				</td>
+			</tr>
+			<tr>
+				<td class="col-md-4">
+					Signature:
+				</td>
+				<td>
+					<textarea class="form-control" ng-model="user.signature">{{user.signature}}</textarea>
+				</td>
+			</tr>
+			<tr>
+				<td class="col-md-4">
+					Avatar URL:
+				</td>
+				<td>
+					<input type="text" class="form-control" placeholder="http://" value="{{user.avatar}}" ng-model="user.avatar">
+				</td>
+			</tr>
+			<tr>
+				<td class="col-mid-4">
+				</td>
+				<td>
+					<input type="submit" class="btn btn-default" value="Update">
+				</td>
+			</tr>
+		</table>
+	
 </form>
+</md-content>

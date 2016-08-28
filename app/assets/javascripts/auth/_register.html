@@ -2,45 +2,125 @@
 	<h1>Register</h1>
 </div>
 
-<form ng-submit="register()">
-	<div class="input-group">
-		<input type="email" class="form-control" placeholder="Email" ng-model="user.email">
-	</div>
-	<div class="input-group">
-		<input type="text" class="form-control" placeholder="Username" ng-model="user.username">
-	</div>
-	<div class="input-group">
-		<input type="password" class="form-control" placeholder="Password" ng-model="user.password">
-	</div>
-	<div class="input-group">
-		<input type="text" class="form-control" placeholder="Website" ng-model="user.website">
-	</div>
-	<div class="input-group">
-		<input type="text" class="form-control" placeholder="Facebook" ng-model="user.facebook">
-	</div>
-	<div class="input-group">
-		<input type="text" class="form-control" placeholder="Twitter" ng-model="user.twitter">
-	</div>
-	<div class="input-group">
-		<input type="text" class="form-control" placeholder="Linked In" ng-model="user.linked_in">
-	</div>
-	<div class="input-group">
-		<input type="text" class="form-control" placeholder="Location" ng-model="user.location">
-	</div>
-	<div class="input-group">
-		<input type="text" class="form-control" placeholder="Occupation" ng-model="user.occupation">
-	</div>
-	<div class="input-group">
-		<input type="text" class="form-control" placeholder="Interests" ng-model="user.interests">
-	</div>
-	<div class="input-group">
-		<input type="date" class="form-control" placeholder="Birthday" ng-model="user.birthday">
-	</div>
-	<div class="input-group">
-		<input type="text" class="form-control" placeholder="Signature" ng-model="user.signature">
-	</div>
-	<div class="input-group">
-		<input type="text" class="form-control" placeholder="Avatar URL" ng-model="user.avatar">
-	</div>
-	<input type="submit" class="btn btn-default" value="Register">
+<md-content layout-padding>
+<form ng-submit="register()" class="form-group">
+		<table class="col-md-6 col-md-offset-3">
+			
+			<tr>
+				<td class="col-md-4">
+					Email:
+				</td>
+				<td>
+					<input type="email" class="form-control" ng-model="user.email">
+				</td>
+			</tr>
+			<tr>
+				<td class="col-md-4">
+					Username:
+				</td>
+				<td>			
+					<input type="text" class="form-control" ng-model="user.username">
+				</td>
+			</tr>
+			<tr>
+				<td class="col-md-4">
+					Password:
+				</td>
+				<td>
+					<input type="password" class="form-control" ng-model="user.password">
+				</td>
+			</tr>
+			<tr>
+				<td class="col-md-4"> 
+					Website URL:
+				</td>
+				<td>
+					<input type="text" class="form-control" placeholder="http://" ng-model="user.website">
+				</td>
+			</tr>
+			<tr>
+				<td class="col-md-4">
+					Facebook URL:
+				</td>
+				<td>
+					<input type="text" class="form-control" placeholder="http://" ng-model="user.facebook">
+				</td>
+			</tr>
+			<tr>
+				<td class="col-md-4">
+					Twitter URL:
+				</td>
+				<td>
+					<input type="text" class="form-control" placeholder="http://" ng-model="user.twitter">
+				</td>
+			</tr>
+			<tr>
+				<td class="col-md-4">
+					LinkedIn URL:
+				</td>
+				<td>
+					<input type="text" class="form-control" placeholder="http://" ng-model="user.linked_in">
+				</td>
+			</tr>
+			<tr>
+				<td class="col-md-4">
+					Location:
+				</td>
+				<td>
+					<input type="text" class="form-control" ng-model="user.location">
+				</td>
+			</tr>
+			<tr>
+				<td class="col-md-4">
+					Occupation:
+				</td>
+				<td>
+					<input type="text" class="form-control" ng-model="user.occupation">
+				</td>
+			</tr>
+			<tr>
+				<td class="col-md-4">
+					Interests:
+				</td>
+				<td>
+					<input type="text" class="form-control" ng-model="user.interests">
+				</td>
+			</tr>
+			<tr>
+				<td class="col-md-4">
+					Birthdate:
+				</td>
+				<td>
+					<md-datepicker ng-model="user.birthday"></md-datepicker>
+				</td>
+			</tr>
+			<tr>
+				<td class="col-md-4">
+					Signature:
+				</td>
+				<td>
+					<textarea class="form-control" ng-model="user.signature">Create a signature!</textarea>
+				</td>
+			</tr>
+			<tr>
+				<td class="col-md-4">
+					Avatar URL:
+				</td>
+				<td>
+					<input type="text" class="form-control" placeholder="http://" ng-model="user.avatar">
+				</td>
+			</tr>
+			<tr>
+				<td class="col-mid-4">
+				</td>
+				<td>
+					<input type="submit" class="btn btn-default" value="Register">
+				</td>
+			</tr>
+		</table>
+	
 </form>
+</md-content>
+
+
+

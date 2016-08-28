@@ -2,20 +2,20 @@
   	  	<div class="page-header">
   	  	  <h1>StoutForum</h1>
   	  	</div>
-  		<table class="col-md-12" id = "forumListContainer">
+  		<table class="forumTable col-md-12">
   			<thead>
-  			  <th>
+  			  <th class="forumHeader">
   			  	<span class="tableElementWrapper">Forum Name</span>
   			  </th>
-  			  <th class="centeredCell">
+  			  <th class="forumHeader centeredCell">
   			  	<span class="tableElementWrapper">Threads</span>
   			  </th>
-  			  <th>
+  			  <th class="forumHeader">
   			  	<span class="tableElementWrapper">Last Post</span>
   			  </th>
   			</thead>
   			<tbody>
-  			<tr id="forumNameContainer" ng-repeat="sub_forum in sub_forums">
+  			<tr id="forumNameContainer" class="forumTable" ng-repeat="sub_forum in sub_forums">
   		      <td>
   		      	<a id="forumName" class = "tableElementWrapper" href="#/sub_forums/{{sub_forum._id}}">Forum - {{sub_forum.name}}</a>
   		      </td>
@@ -28,7 +28,7 @@
   		      </td>
   	  		</tr>
   	  	</tbody>
-  	  	<table>
+  	  	</table>
   	
   	
   	  

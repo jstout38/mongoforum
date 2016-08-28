@@ -6,13 +6,18 @@ angular.module('stoutForum')
   	o.getAll = function() {
   	  return $http.get('/users_admin.json').success(function(data){
   	  	angular.copy(data, o.users_admin)
-  	  })
+  	  });
   	};
     o.update = function(body, user) {
       return $http.put('/users_admin/' + user._id + '.json', body).success(function(data){
         
       });
-    };    
+    };
+    o.get = function(user) {
+      return $http.get('/users_admin/' + user._id + '.json').success(function(data){        
+        return data;
+      });
+    }    
   	return o;
   }])
 /*.factory('sub_forum', [

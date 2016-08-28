@@ -6,7 +6,7 @@ class UsersController < ApplicationController
 	end
 
 	def show
-	  respond_with SubForum.find(params[:id])
+	  respond_with User.find(params[:id])
 	end
 
 	def update

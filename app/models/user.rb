@@ -44,7 +44,7 @@ class User
   field :location, type: String, default: ""
   field :occupation, type: String, default: ""
   field :interests, type: String, default: ""
-  field :birthday, type: Date
+  field :birthday, type: DateTime
   field :signature, type: String, default: ""
   field :avatar, type: String, default: ""
 

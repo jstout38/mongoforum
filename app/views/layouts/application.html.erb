@@ -1,18 +1,24 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <title>My Angular App!</title>    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>StoutForum</title>    
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
     <%= csrf_meta_tags %>
     <style> .glyphicon-thumbs-up { cusor:pointer } </style>
   </head>
-  <body ng-app="stoutForum">
+   
+  <body ng-app="stoutForum" ng-cloak>
+    
+    
+    
     <div class="col-md-8 col-md-offset-2">
       <div ng-include="'nav/_nav.html'"></div>
       <ui-view></ui-view>
     </div>
-    
+   
+ 
    
   	
   	

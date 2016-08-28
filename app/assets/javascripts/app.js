@@ -1,4 +1,4 @@
-angular.module('stoutForum', ['ui.router', 'templates', 'Devise'])
+angular.module('stoutForum', ['ui.router', 'ngMaterial', 'ngMessages', 'templates', 'Devise'])
   .config([
   	'$stateProvider',
   	'$urlRouterProvider',
@@ -86,9 +86,19 @@ angular.module('stoutForum', ['ui.router', 'templates', 'Devise'])
           url: '/users_admin/edit',
           templateUrl: 'users_admin/_users_admin_edit.html',
           controller: 'UsersAdminCtrl',
+          resolve: {
+            user: ['Auth', 'users_admin', function(Auth, users_admin) {
+              return Auth.currentUser().then(function(user){                
+                return users_admin.get(user);
+              })
+            }]
+          },
+        
           onEnter: ['$state', 'Auth', function($state, Auth) {
             Auth.currentUser().then(function (){
               $state.go('users_admin_edit');
+            }, function(error){
+              $state.go('home');
             })
           }]
         });
