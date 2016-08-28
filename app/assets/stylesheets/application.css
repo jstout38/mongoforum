@@ -126,6 +126,11 @@ md-input-container {
 	padding-bottom: 0;
 }
 
+.login-button {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
 
 
 .inputdemoErrors .inputErrorsApp {

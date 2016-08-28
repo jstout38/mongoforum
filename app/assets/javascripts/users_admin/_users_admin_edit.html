@@ -3,97 +3,109 @@
 </div>
 
 <md-content layout-padding>
-<form ng-submit="update()" class="form-group">
-		<table class="col-md-6 col-md-offset-3">
+<form ng-submit="update()" name="editForm">				
 			
-			<tr>
-				<td class="col-md-4"> 
-					Website URL:
-				</td>
-				<td>
-					<input type="text" class="form-control" placeholder="http://" value="{{user.website}}" ng-model="user.website">
-				</td>
-			</tr>
-			<tr>
-				<td class="col-md-4">
-					Facebook URL:
-				</td>
-				<td>
-					<input type="text" class="form-control" placeholder="http://" value="{{user.facebook}}" ng-model="user.facebook">
-				</td>
-			</tr>
-			<tr>
-				<td class="col-md-4">
-					Twitter URL:
-				</td>
-				<td>
-					<input type="text" class="form-control" placeholder="http://" value="{{user.twitter}}" ng-model="user.twitter">
-				</td>
-			</tr>
-			<tr>
-				<td class="col-md-4">
-					LinkedIn URL:
-				</td>
-				<td>
-					<input type="text" class="form-control" placeholder="http://" value="{{user.linked_in}}" ng-model="user.linked_in">
-				</td>
-			</tr>
-			<tr>
-				<td class="col-md-4">
-					Location:
-				</td>
-				<td>
-					<input type="text" class="form-control" value="{{user.location}}" ng-model="user.location">
-				</td>
-			</tr>
-			<tr>
-				<td class="col-md-4">
-					Occupation:
-				</td>
-				<td>
-					<input type="text" class="form-control" value="{{user.occupation}}" ng-model="user.occupation">
-				</td>
-			</tr>
-			<tr>
-				<td class="col-md-4">
-					Interests:
-				</td>
-				<td>
-					<input type="text" class="form-control" value="{{user.interests}}" ng-model="user.interests">
-				</td>
-			</tr>
-			<tr>
-				<td class="col-md-4">
-					Birthdate:
-				</td>
-				<td>
-					<md-datepicker value={{user.birthday}} ng-model="user.birthday"></md-datepicker>
-				</td>
-			</tr>
-			<tr>
-				<td class="col-md-4">
-					Signature:
-				</td>
-				<td>
-					<textarea class="form-control" ng-model="user.signature">{{user.signature}}</textarea>
-				</td>
-			</tr>
-			<tr>
-				<td class="col-md-4">
-					Avatar URL:
-				</td>
-				<td>
-					<input type="text" class="form-control" placeholder="http://" value="{{user.avatar}}" ng-model="user.avatar">
-				</td>
-			</tr>
-			<tr>
-				<td class="col-mid-4">
-				</td>
-				<td>
-					<input type="submit" class="btn btn-default" value="Update">
-				</td>
-			</tr>
-		</table>
+				<div class="row">
+				<md-input-container class="col-md-4">
+				<label>Website URL</label>
+				<input name="website" type="url" value="{{user.website}}" ng-model="user.website">
+				<div ng-messages="editForm.website.$error" md-auto-hide="false">
+					<div ng-message="url">Not a valid URL. Must begin with http://</div>
+				</div>				
+				</md-input-container>				
+			
+			
+				<md-input-container class="col-md-4">
+				<label>Facebook URL</label>
+				<input name="facebook" type="url" value="{{user.facebook}}" ng-model="user.facebook">
+				<div ng-messages="editForm.facebook.$error" md-auto-hide="false">
+					<div ng-message="url">Not a valid URL. Must begin with http://</div>
+				</div>				
+				</md-input-container>								
+				
+				<md-input-container class="col-md-4">
+				<label>Twitter URL</label>
+				<input name="twitter" type="url" value="{{user.twitter}}" ng-model="user.twitter">
+				<div ng-messages="editForm.twitter.$error" md-auto-hide="false">
+					<div ng-message="url">Not a valid URL. Must begin with http://</div>
+				</div>				
+				</md-input-container>
+				</div>
+
+				<div class="row">
+				<md-input-container class="col-md-4">
+				<label>LinkedIn URL</label>
+				<input name="linked_in" type="url" value="{{user.linked_in}}" ng-model="user.linked_in">
+				<div ng-messages="editForm.linked_in.$error" md-auto-hide="false">
+					<div ng-message="url">Not a valid URL. Must begin with http://</div>
+				</div>				
+				</md-input-container>				
+			
+				<md-input-container class="col-md-4">
+				<label>Location</label>
+				<input name="location" value="{{user.location}}" ng-model="user.location">				
+				</md-input-container>								
+				
+				<md-input-container class="col-md-4">
+				<label>Occupation</label>
+				<input name="occupation" value="{{user.occupation}}" ng-model="user.occupation">				
+				</md-input-container>
+				</div>
+					
+				<div class="row col-md-12">	
+				<div class="column col-md-6">
+				<div class="row">
+				<md-input-container class="col-md-12">
+				<label>Interests</label>
+				<textarea md-maxlength="150" rows="3" name="interests" ng-model="user.interests">List your interests and hobbies!</textarea>		
+				<div ng-messages="editForm.interests.$error">
+					<div ng-message="md-maxlength">{{user.interests}}</div>
+				</div>		
+				</md-input-container>
+				</div>
+
+				<div class="row">
+				<md-input-container class="col-md-12">
+				<label>Signature</label>
+				<textarea md-maxlength="150" rows="5" name="signature" ng-model="user.signature">Create a signature!</textarea>
+				<div ng-messages="editForm.signature.$error">
+					<div ng-message="md-maxlength">{{user.signature}}</div>
+				</div>
+				</md-input-container>
+				</div>
+				</div>				
+
+				<div class="column col-md-6 col-offset-6">
+				<div class="row">
+				<md-input-container class="col-md-12">
+				<label>Birthdate</label>
+				<md-datepicker value={{user.birthday}} ng-model="user.birthday"></md-datepicker>
+				</md-input-container>
+				</div>
+
+				<div class="row">
+				<md-input-container class="col-md-12">
+				<label>Avatar URL</label>
+				<input name="avatar" type="url" value="{{user.avatar}}" ng-model="user.avatar">
+				<div ng-messages="editForm.avatar.$error" md-auto-hide="false">
+					<div ng-message="url">Not a valid URL. Must begin with http://</div>
+				</div>				
+				</md-input-container>
+				</div>
+
+				<div class="avatarPreview row col-md-12" ng-if="hasAvatar()">
+				<h4>Preview</h4>
+				<img src="{{user.avatar}}" height="150">
+				</div>					
+				</div>
+			</div>
+
+				<div class="row">		
+					<md-button type="submit">Update</md-button>
+				</div>
+		
+		
+		
 	
 </form>
 </md-content>

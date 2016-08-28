@@ -8,7 +8,13 @@ angular.module('stoutForum')
  function($scope, $state, users_admin, Auth, user){   
    $scope.user = user.data;
    $scope.user.birthday = new Date($scope.user.birthday);          
-   $scope.users_admin = users_admin.users_admin;   
+   $scope.users_admin = users_admin.users_admin;
+   $scope.hasAvatar = function() {
+         if ($scope.user.avatar != null && $scope.user.avatar != "") {
+            return true;
+         }
+         return false;
+      };   
    $scope.update = function() {
  			users_admin.update($scope.user, Auth._currentUser).then(function(){
  				$state.go('home');
