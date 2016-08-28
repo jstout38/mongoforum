@@ -51,6 +51,8 @@ class User
   has_many :posts
   has_many :forum_threads
 
+  validates_uniqueness_of :username
+
   def as_json(options = {})
     res = super
 

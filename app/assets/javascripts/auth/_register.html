@@ -8,8 +8,9 @@
 				<div class="row">
 				<md-input-container class="col-md-4">
 				<label>Email</label>
-				<input md-maxlength="40" required name="email" ng-pattern="/^.+@.+\..+$/" ng-model="user.email">
+				<input md-maxlength="40" required name="email" ng-change="clearError()" ng-pattern="/^.+@.+\..+$/" ng-model="user.email">
 				<div ng-messages="registerForm.email.$error" multiple md-auto-hide="false">
+					<p class="errorMessages" ng-repeat="message in emailResponses">{{message}}</p>
 					<div ng-message="required">Required.</div>
 					<div ng-message="md-maxlength">Email must be less than 40 characters long.</div>
 					<div ng-message="pattern">Email must look like an email address</div>
@@ -18,9 +19,10 @@
 		
 		
 				<md-input-container class="col-md-4">
-				<label>Username</label>
-				<input md-maxlength="30" required name="username" ng-model="user.username">
+				<label>Username</label>				
+				<input md-maxlength="30" required name="username" ng-change="clearError()" ng-model="user.username">
 				<div ng-messages="registerForm.username.$error" multiple md-auto-hide="false">
+					<p class="errorMessages" ng-repeat="message in usernameResponses">{{message}}</p>
 					<div ng-message="required">Required.</div>
 					<div ng-message="md-maxlength">Username must be less than 30 characters long.</div>
 				</div>
@@ -31,7 +33,7 @@
 				<md-input-container class="col-md-4">
 				<label>Password</label>
 				<input type="password" minlength="8" md-maxlength="30" required name="password" ng-model="user.password">
-				<div ng-messages="registerForm.password.$error" multiple md-auto-hide="false">
+				<div ng-messages="registerForm.password.$error" multiple md-auto-hide="false">					
 					<div ng-message="required">Required.</div>
 					<div ng-message="md-maxlength">Password must be less than 30 characters long.</div>
 					<div ng-message="minlength">Password must be at least 8 characters long.</div>
@@ -133,7 +135,7 @@
 			</div>
 
 				<div class="row">		
-					<md-button type="submit">Register</md-button>
+					<md-button type="submit" ng-click="showError()">Register</md-button>										
 				</div>
 		
 		

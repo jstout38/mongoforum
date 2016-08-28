@@ -132,6 +132,11 @@ md-input-container {
 	margin-right: auto;
 }
 
+.errorContainer {
+	text-align: center;
+	color: red;
+}
+
 
 .inputdemoErrors .inputErrorsApp {
   min-height: 48px; }
