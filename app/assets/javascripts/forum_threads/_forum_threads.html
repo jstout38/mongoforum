@@ -10,7 +10,7 @@
                 <div id="avatarContainer">
                   <img ng-if="hasAvatar(post)" id="avatar" width="100" src="{{post.user.avatar}}">
                 </div>
-                <p id="userName">{{post.user.username}}</p>
+                <a href="#/users_admin/{{post.user_id}}"><p id="userName">{{post.user.username}}</p></a>
                   <div id="socialMedia">
                   <a ng-if="hasTwitter(post)" class="btn btn-social-icon btn-m btn-twitter" href="{{post.user.twitter}}">
                     <span class="fa fa-twitter"></span>

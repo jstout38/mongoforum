@@ -55,6 +55,7 @@ class User
     res = super
 
     res["_id"] = res["_id"].to_s
+    #res["birthday"] = res["birthday"].strftime("%I:%M%p on %m/%d/%Y")
     
     res
 

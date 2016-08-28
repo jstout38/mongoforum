@@ -14,7 +14,7 @@ angular.module('stoutForum')
       });
     };
     o.get = function(user) {
-      return $http.get('/users_admin/' + user._id + '.json').success(function(data){        
+      return $http.get('/users_admin/' + user + '.json').success(function(data){        
         return data;
       });
     }    

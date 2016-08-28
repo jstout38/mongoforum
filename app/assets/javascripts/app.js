@@ -89,7 +89,7 @@ angular.module('stoutForum', ['ui.router', 'ngMaterial', 'ngMessages', 'template
           resolve: {
             user: ['Auth', 'users_admin', function(Auth, users_admin) {
               return Auth.currentUser().then(function(user){                
-                return users_admin.get(user);
+                return users_admin.get(user._id);
               })
             }]
           },
@@ -101,6 +101,16 @@ angular.module('stoutForum', ['ui.router', 'ngMaterial', 'ngMessages', 'template
               $state.go('home');
             })
           }]
+        })
+        .state('users', {
+          url: '/users_admin/{id}',
+          templateUrl: 'users_admin/_users_show.html',
+          controller: 'UsersAdminCtrl',
+          resolve: {
+            user: ['$stateParams', 'Auth', 'users_admin', function($stateParams, Auth, users_admin) {
+              return users_admin.get($stateParams.id);
+            }]
+          }
         });
 
   		$urlRouterProvider.otherwise('home');

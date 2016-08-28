@@ -37,14 +37,31 @@
 	background-color: #F7E7CE;
 }
 
-.tableElementWrapper {
-  margin: 5px;
-  margin-bottom: 15px;  
-}
+
+
 
 .centeredCell {
   text-align: center;
 } 
+
+.tableElementWrapper {
+  display: block;
+  margin-bottom: 10px;
+  margin-top: 5px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.user-page-header {
+	display: block;
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.userAvatar {
+	margin-right: 20px;
+}
 
 #forumListContainer {
 	

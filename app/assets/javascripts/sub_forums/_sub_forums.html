@@ -2,7 +2,7 @@
   	  	  <h1><a href="#">Forum</a> - {{sub_forum.name}}</h1>
   	  	</div>
 
-  	  	<table class="col-md-12 forumTable" id = "threadContainer">
+  	  	<table class="col-md-12" id = "threadContainer">
           <thead>
             <th class="forumHeader">
               <span class="tableElementWrapper">Topic</span>
@@ -19,7 +19,7 @@
         </thead>
       <tbody>
         <tr class="forumTable" ng-repeat="forum_thread in forum_threads">
-  		    <td><span class="tableElementWrapper"><a href="#/sub_forums/{{sub_forum._id}}/forum_threads/{{forum_thread._id}}">{{forum_thread.subject}}</a></span><br>          
+  		    <td><span class="tableElementWrapper"><a href="#/sub_forums/{{sub_forum._id}}/forum_threads/{{forum_thread._id}}">{{forum_thread.subject}}</a></span>         
             <span class ="tableElementWrapper"> by {{forum_thread.user.username}}</span>
           </td>
           <td class = "centeredCell">
