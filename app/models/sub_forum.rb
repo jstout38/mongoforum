@@ -4,6 +4,7 @@ class SubForum
   field :name, type: String
   field :last_post_time, type: DateTime
   field :last_post_user, type: String  
+  field :last_post_id, type: String
 
   has_many :forum_threads
 
@@ -24,6 +25,7 @@ class SubForum
     post = Post.find(post)
     self.last_post_time = post.created_at
     self.last_post_user = post.user.username
+    self.last_post_id = post.user._id
   end
 
   

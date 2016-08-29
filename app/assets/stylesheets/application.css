@@ -54,6 +54,7 @@
 	text-align: center;
 	margin-left: auto;
 	margin-right: auto;
+	
 }
 
 .userAvatar {
@@ -82,7 +83,7 @@
 
 #avatarContainer {
 	vertical-align: middle;
-
+	min-width: 15vw;
 }
 
 #avatar {
@@ -137,6 +138,9 @@ md-input-container {
 	color: red;
 }
 
+#userHeader {
+	min-height: 100px;
+}
 
 .inputdemoErrors .inputErrorsApp {
   min-height: 48px; }

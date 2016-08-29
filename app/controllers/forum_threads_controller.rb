@@ -2,8 +2,8 @@ class ForumThreadsController < ApplicationController
 	before_filter :authenticate_user!, only: [:create]
 
 	def index
-	  @sub_forum = SubForum.find(params[:sub_forum_id])
-	  respond_with ForumThread.where(sub_forum_id: @sub_forum).order_by(:"last_post_time" => "desc")
+	  @sub_forum = SubForum.find(params[:id])
+	  respond_with ForumThread.where(sub_forum_id: @sub_forum._id).order_by(:"last_post_time" => "desc").paginate(page: params[:page], per_page: 10)
 	  
 	  #respond_with ForumThread.all
 	  #_id = BSON::ObjectId.from_string(params[:sub_forum_id])

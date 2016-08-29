@@ -3,8 +3,9 @@ class PostsController < ApplicationController
 	before_filter :authenticate_user!, only: [:create]
 
 	def index
-	  @thread = ForumThread.find(params[:forum_thread_id])
-	  respond_with Post.where(forum_thread_id: @thread)
+	  @thread = ForumThread.find(params[:id])	 
+	  respond_with Post.where(forum_thread_id: @thread._id).paginate(page: params[:page], per_page: 10)	
+	  # => respond_with @posts.paginate(page: params[:page], per_page: 10)
 	  
 	  #respond_with ForumThread.all
 	  #_id = BSON::ObjectId.from_string(params[:sub_forum_id])
@@ -29,8 +30,7 @@ class PostsController < ApplicationController
 	  respond_with @post, location: nil
 	end
 
-	def upvote
-	  
+	def upvote	  
 	  changed = false
 	  @user = current_user
 	  if (!@post.voters.include? @user._id) && (@user._id != @post.user._id)
@@ -69,7 +69,9 @@ class PostsController < ApplicationController
 	  end
 	end
 
-	private
+	
+
+		private
 
 	def set_post
 	  @post = Post.find(params[:id])

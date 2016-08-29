@@ -17,14 +17,14 @@
   			<tbody>
   			<tr id="forumNameContainer" class="forumTable" ng-repeat="sub_forum in sub_forums">
   		      <td>
-  		      	<a id="forumName" class = "tableElementWrapper" href="#/sub_forums/{{sub_forum._id}}">Forum - {{sub_forum.name}}</a>
+  		      	<a id="forumName" class = "tableElementWrapper" href="#/sub_forums/{{sub_forum._id}}/1">Forum - {{sub_forum.name}}</a>
   		      </td>
   		      <td class = "col-md-1 centeredCell">
   		      	<span class = "tableElementWrapper">{{sub_forum.forum_threads.length}}</span>
   		      </td>
   		      <td class = "col-md-5">
   		      	<span class = "tableElementWrapper">Last post at {{sub_forum.last_post_time}} by 
-  		      	{{sub_forum.last_post_user}}</span>
+  		      	<a href="#/users_admin/{{sub_forum.last_post_id}}">{{sub_forum.last_post_user}}</a></span>
   		      </td>
   	  		</tr>
   	  	</tbody>

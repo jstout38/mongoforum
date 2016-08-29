@@ -1,5 +1,5 @@
 <div class="user-page-header col-md-6">
-	<h1><img src="{{user.avatar}}" class="userAvatar" width="150"></img>  {{user.username}}</h1>
+	<h1 id="userHeader"><img ng-if="hasAvatar()" src="{{user.avatar}}" class="userAvatar" width="150"></img>  {{user.username}}</h1>
 
 </div>
 

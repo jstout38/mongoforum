@@ -8,7 +8,8 @@ angular.module('stoutForum')
  function($scope, forum_threads, forum_thread, posts, Auth){
    
    $scope.forum_thread = forum_thread;
-   $scope.posts = posts.posts;   
+   $scope.posts = posts.posts;
+      
    $scope.addPost = function(){
       console.log($scope.body);
       if(!$scope.body || $scope.body === '') {return;}

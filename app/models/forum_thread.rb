@@ -5,6 +5,8 @@ class ForumThread
   field :subject, type: String
   field :last_post_time, type: DateTime
   field :last_post_user, type: String
+  field :last_post_id, type: String
+  field :number_of_posts, type: Integer
 
   has_many :posts
   belongs_to :sub_forum, foreign_key: "sub_forum_id"
@@ -48,6 +50,7 @@ class ForumThread
     post = Post.find(post)
     self.last_post_time = post.created_at
     self.last_post_user = post.user.username
+    self.last_post_id = post.user._id
   end
 
   

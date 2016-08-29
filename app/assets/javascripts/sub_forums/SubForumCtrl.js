@@ -21,6 +21,22 @@ angular.module('stoutForum')
    $scope.isLoggedIn = function(){
       return Auth.isAuthenticated();   
    };
+   $scope.pagesArray = function(thread){
+      var pages = [];
+      var pageCount = thread.posts.length / 10;
+      for (var i = 0; i < pageCount; i++) {
+         pages.push(i + 1);
+      }
+      return pages;
+   };
+   $scope.threadsArray = function(sub_forum){
+      var pages = [];
+      var pageCount = sub_forum.forum_threads.length / 10;
+      for (var i = 0; i < pageCount; i++) {
+         pages.push(i + 1);
+      }
+      return pages;
+   };
 }
    //$scope.addPost = function(){
    //	 if(!$scope.title || $scope.title === '') { return; }

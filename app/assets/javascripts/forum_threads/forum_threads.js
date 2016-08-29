@@ -3,8 +3,8 @@ angular.module('stoutForum')
   '$http',
   function($http){
   	var o = { forum_threads: [] };
-  	o.getAll = function(sub_forum) {
-      return $http.get('/sub_forums/' + sub_forum + '/forum_threads.json').success(function(data){
+  	o.getAll = function(sub_forum, page) {
+      return $http.get('/sub_forums/' + sub_forum + '/forum_threads/index/' + page + '.json').success(function(data){
         angular.copy(data, o.forum_threads)
       })
     };

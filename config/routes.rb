@@ -4,11 +4,18 @@ Rails.application.routes.draw do
   resources :users_admin, :controller => 'users' 
   root to: 'application#angular'
   resources :sub_forums, only: [:index, :show] do
+      member do
+        get '/:controller/:action/:page'
+      end
     resources :forum_threads do
+      member do
+        get '/:controller/:action/:page'        
+      end
       resources :posts do
         member do
+          get '/:controller/:action/:page'
           put '/upvote' => 'posts#upvote'
-          put '/downvote' => 'posts#downvote'
+          put '/downvote' => 'posts#downvote'                    
         end        
       end
     end

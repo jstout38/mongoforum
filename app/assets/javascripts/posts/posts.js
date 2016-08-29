@@ -3,9 +3,10 @@ angular.module('stoutForum')
   	'$http',
   function($http){
   	var o = { posts: [] };
-  	o.getAll = function(sub_forum_id, id) {
-      return $http.get('/sub_forums/' + sub_forum_id + '/forum_threads/' + id + '/posts.json').success(function(data){
-        angular.copy(data, o.posts)
+  	o.getAll = function(sub_forum_id, id, page) {
+      return $http.get('/sub_forums/' + sub_forum_id + '/forum_threads/' + id + '/posts/index/' + page + '.json').success(function(data){
+        console.log(data);
+        angular.copy(data, o.posts);
       })
     };
     //o.get = function(id, sub_forum) {

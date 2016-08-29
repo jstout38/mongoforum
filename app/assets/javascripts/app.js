@@ -16,7 +16,7 @@ angular.module('stoutForum', ['ui.router', 'ngMaterial', 'ngMessages', 'template
           }
   		  })
   		  .state('sub_forums', {
-          url: '/sub_forums/{id}',
+          url: '/sub_forums/{id}/{page}',
           templateUrl: 'sub_forums/_sub_forums.html',
           controller: 'SubForumCtrl',
           resolve: {
@@ -29,20 +29,21 @@ angular.module('stoutForum', ['ui.router', 'ngMaterial', 'ngMessages', 'template
             //  return forum_threads.getAll($stateParams.id);
             //}]
             postPromise: ['$stateParams', 'forum_threads', function($stateParams, forum_threads){
-              return forum_threads.getAll($stateParams.id);
+              return forum_threads.getAll($stateParams.id, $stateParams.page);
             }]
           }
         })
         .state('forum_threads', {
-  		    url: '/sub_forums/{sub_forum_id}/forum_threads/{id}',
+  		    url: '/sub_forums/{sub_forum_id}/forum_threads/{id}/{page}',
   		    templateUrl: 'forum_threads/_forum_threads.html',
   		    controller: 'ForumThreadCtrl',
           resolve: {
             forum_thread: ['$stateParams', 'forum_threads', function($stateParams, forum_threads) {
               return forum_threads.get($stateParams.id, $stateParams.sub_forum_id);
             }],
-            postPromise: ['$stateParams', 'posts', function($stateParams, posts){
-              return posts.getAll($stateParams.sub_forum_id, $stateParams.id);
+            postPromise: ['$stateParams', 'posts', function($stateParams, posts){ 
+              console.log(posts);
+              return posts.getAll($stateParams.sub_forum_id, $stateParams.id, $stateParams.page);
             }]
           }
   		  })
