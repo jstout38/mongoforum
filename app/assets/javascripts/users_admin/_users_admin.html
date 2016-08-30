@@ -2,30 +2,18 @@
   	  	  <h1>Users</h1>
   	  	</div>
 
-        <table>
+        <table class="col-md-12">
           <thead>
-          <th>Username</th>
-          <th>Email</th>
-          <th>Website</th>
-          <th>Facebook</th>
-          <th>Twitter</th>
-          <th>LinkedIn</th>
-          <th>Location</th>
-          <th>Occupation</th>
-          <th>Interests</th>
-          <th>Birthday</th>
+          <th class="col-md-3 no-padding">Username</th>
+          <th class="centeredCell col-md-3">Email</th>
+          <th class="centeredCell col-md-3">Posts</th>
+          <th class="centeredCell col-md-3">Joined Date</th>
         </thead>
-  	  	<tr ng-repeat="user in users_admin">
-  		    <td class="col-md-1">{{user.username}}</td>
-          <td class="col-md-2">{{user.email}}</td>
-          <td class="col-md-1">{{user.website}}</td>
-          <td class="col-md-1">{{user.facebook}}</td>
-          <td class="col-md-1">{{user.twitter}}</td>
-          <td class="col-md-1">{{user.linked_in}}</td>
-          <td class="col-md-1">{{user.location}}</td>
-          <td class="col-md-1">{{user.occupation}}</td>
-          <td class="col-md-1">{{user.interests}}</td>
-          <td class="col-md-1">{{user.birthday}}</td>
+  	  	<tr ng-repeat="listed_user in users_admin">
+  		    <td><a href="#/users_admin/{{listed_user._id}}">{{listed_user.username}}</a></td>
+          <td class="centeredCell">{{listed_user.email}}</td>
+          <td class="centeredCell">{{listed_user.postCount}}</td>
+          <td class="centeredCell">{{listed_user.created_at}}</td>
         </tr>
       </table>
   	  	

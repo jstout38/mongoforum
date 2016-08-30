@@ -149,6 +149,10 @@ md-input-container {
   text-align: left;
   width: 100%; }
 
+.no-padding {
+	padding: 0px;
+}
+
 
 
 

@@ -1,5 +1,6 @@
 class User
   include Mongoid::Document
+  include Mongoid::Timestamps
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -47,6 +48,7 @@ class User
   field :birthday, type: DateTime
   field :signature, type: String, default: ""
   field :avatar, type: String, default: ""
+  field :postCount, type: Integer, default: 0
 
   has_many :posts
   has_many :forum_threads
@@ -57,8 +59,10 @@ class User
     res = super
 
     res["_id"] = res["_id"].to_s
-    #res["birthday"] = res["birthday"].strftime("%I:%M%p on %m/%d/%Y")
-    
+    if res["created_at"]
+      res["created_at"] = res["created_at"].strftime("%m/%d/%Y")
+    end
+   
     res
 
   end

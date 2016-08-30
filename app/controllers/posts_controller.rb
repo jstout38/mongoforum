@@ -26,6 +26,9 @@ class PostsController < ApplicationController
 	  @forum_thread.save
 	  @sub_forum.add_last_post(@post)
 	  @sub_forum.save
+	  @current_user = User.find(current_user)
+	  @current_user.postCount = @current_user.postCount + 1
+	  @current_user.save
 
 	  respond_with @post, location: nil
 	end

@@ -41,8 +41,7 @@ angular.module('stoutForum', ['ui.router', 'ngMaterial', 'ngMessages', 'template
             forum_thread: ['$stateParams', 'forum_threads', function($stateParams, forum_threads) {
               return forum_threads.get($stateParams.id, $stateParams.sub_forum_id);
             }],
-            postPromise: ['$stateParams', 'posts', function($stateParams, posts){ 
-              console.log(posts);
+            postPromise: ['$stateParams', 'posts', function($stateParams, posts){               
               return posts.getAll($stateParams.sub_forum_id, $stateParams.id, $stateParams.page);
             }]
           }
@@ -78,6 +77,11 @@ angular.module('stoutForum', ['ui.router', 'ngMaterial', 'ngMessages', 'template
           templateUrl: 'users_admin/_users_admin.html',
           controller: 'UsersAdminCtrl',
           resolve: {
+            user: ['Auth', 'users_admin', function(Auth, users_admin) {
+              return Auth.currentUser().then(function(user){                
+                return users_admin.get(user._id);
+              })
+            }],
             postPromise: ['users_admin', function(users_admin){
               return users_admin.getAll();
             }]
