@@ -5,8 +5,10 @@ angular.module('stoutForum')
  'sub_forum',
  'forum_threads',
  'Auth',
- function($scope, sub_forums, sub_forum, forum_threads, Auth){
+ '$stateParams',
+ function($scope, sub_forums, sub_forum, forum_threads, Auth, $stateParams){
    
+   $scope.current_page = $stateParams.page
    $scope.sub_forum = sub_forum;   
    $scope.forum_threads = forum_threads.forum_threads;
    $scope.thread = {topic: '', post: ''}
@@ -36,7 +38,7 @@ angular.module('stoutForum')
          pages.push(i + 1);
       }
       return pages;
-   };
+   };   
 }
    //$scope.addPost = function(){
    //	 if(!$scope.title || $scope.title === '') { return; }

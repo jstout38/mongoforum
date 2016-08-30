@@ -5,10 +5,12 @@ angular.module('stoutForum')
  'forum_thread',
  'posts',
  'Auth',
- function($scope, forum_threads, forum_thread, posts, Auth){
+ '$stateParams',
+ function($scope, forum_threads, forum_thread, posts, Auth, $stateParams){
    
    $scope.forum_thread = forum_thread;
    $scope.posts = posts.posts;
+   $scope.current_page = $stateParams.page
       
    $scope.addPost = function(){
       console.log($scope.body);
@@ -62,6 +64,14 @@ angular.module('stoutForum')
    };
    $scope.isLoggedIn = function(){
       return Auth.isAuthenticated();   
+   };
+   $scope.pagesArray = function(thread){
+      var pages = [];
+      var pageCount = thread.posts.length / 10;
+      for (var i = 0; i < pageCount; i++) {
+         pages.push(i + 1);
+      }
+      return pages;
    };
    //$scope.addPost = function(){
    //	 if(!$scope.title || $scope.title === '') { return; }

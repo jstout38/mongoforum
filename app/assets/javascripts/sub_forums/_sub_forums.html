@@ -3,9 +3,11 @@
   	  	</div>
 
         <div ng-if="sub_forum.forum_threads.length / 10 > 1">
-              <span ng-repeat="n in threadsArray(sub_forum)">
-                <a href="#/sub_forums/{{sub_forum._id}}/{{n}}">{{n}}</a>
-              </span>
+              Page {{current_page}}
+              (<span ng-repeat="n in threadsArray(sub_forum)">
+                <a ng-if="n != current_page" href="#/sub_forums/{{sub_forum._id}}/{{n}}">{{n}}</a>
+                <span ng-if="n == current_page">{{n}}</span>
+              </span>)
         </div>
   	  	<table class="col-md-12" id = "threadContainer">
           <thead>
