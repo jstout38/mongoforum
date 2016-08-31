@@ -72,7 +72,10 @@ class PostsController < ApplicationController
 	  end
 	end
 
-	
+	def search		
+		@results = Post.where(body: /#{params[:post_search]}/i).order_by(:created_at => "desc")
+		render json: @results
+	end
 
 		private
 

@@ -1,8 +1,9 @@
 angular.module('stoutForum')
  .controller('NavCtrl', [
  	'$scope',
+ 	'$state',
  	'Auth',
- 	function($scope, Auth){
+ 	function($scope, $state, Auth){
 
  		$scope.signedIn = Auth.isAuthenticated;
  		$scope.logout = Auth.logout;
@@ -17,5 +18,6 @@ angular.module('stoutForum')
  		});
  		$scope.$on('devise:logout', function (e, user){
  			$scope.user = {};
+ 			$state.go('home');
  		})
  	}]);

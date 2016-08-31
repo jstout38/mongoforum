@@ -36,5 +36,10 @@ angular.module('stoutForum')
           }
         });
     };
+    o.search = function(search_hash) {
+      return $http.post('/search', search_hash).success(function(data){
+        o.posts.push(data);
+      });
+    }
   	return o;
   }]);

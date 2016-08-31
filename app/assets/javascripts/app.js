@@ -116,6 +116,17 @@ angular.module('stoutForum', ['ui.router', 'ngMaterial', 'ngMessages', 'template
               return users_admin.get($stateParams.id);
             }]
           }
+        })
+        .state('search', {
+          url: '/search',
+          templateUrl: 'search/_search.html',
+          controller: 'SearchCtrl'//,
+          //resolve: {
+          //  posts: ['posts', function(posts) {
+          //    posts = [];
+          //    return posts;
+          //  }]
+          //}
         });
 
   		$urlRouterProvider.otherwise('home');
