@@ -1,63 +1,88 @@
 <div class="page-header">
-  	  	  <h1><a href="#">Forum</a> - {{sub_forum.name}}</h1>
-  	  	</div>
+  <h1>
+    <a href="#">Forum</a> - {{sub_forum.name}}
+  </h1>
+</div>
 
-        <div ng-if="sub_forum.forum_threads.length / 10 > 1">
-              Page {{current_page}}
-              (<span ng-repeat="n in threadsArray(sub_forum)">
-                <a ng-if="n != current_page" href="#/sub_forums/{{sub_forum._id}}/{{n}}">{{n}}</a>
-                <span ng-if="n == current_page">{{n}}</span>
-              </span>)
-        </div>
-  	  	<table class="col-md-12" id = "threadContainer">
-          <thead>
-            <th class="forumHeader">
-              <span class="tableElementWrapper">Topic</span>
-            </th>
-            <th class = "forumHeader centeredCell">
-              <span class="tableElementWrapper">Posts</span>
-            </th>
-            <th class = "forumHeader">
-              <span class="tableElementWrapper">Topic Created</span>
-            </th>
-            <th class = "forumHeader">
-              <span class="tableElementWrapper">Last Post</span>
-            </th>
-        </thead>
-      <tbody>
-        <tr class="forumTable" ng-repeat="forum_thread in forum_threads">
-  		    <td><span class="tableElementWrapper"><a href="#/sub_forums/{{sub_forum._id}}/forum_threads/{{forum_thread._id}}/1">{{forum_thread.subject}}</a><br>
-            by <a href="#/users_admin/{{forum_thread.user._id}}">{{forum_thread.user.username}}</a>
-            <div ng-if="forum_thread.posts.length / 10 > 1">
-              <span ng-repeat="n in pagesArray(forum_thread)">
-                <a href="#/sub_forums/{{sub_forum._id}}/forum_threads/{{forum_thread._id}}/{{n}}">{{n}}</a>
-              </span>
-            </div>
-            </span>
-          </td>
-          <td class = "centeredCell">
-            {{forum_thread.posts.length}}
-          </td>
-          <td>
-            <span class="tableElementWrapper">{{forum_thread.created_at}}</span>
-          </td>
-          <td>
-            <span class="tableElementWrapper"><a href="#/users_admin/{{forum_thread.last_post_id}}">{{forum_thread.last_post_user}}</a> at {{forum_thread.last_post_time}}</span>
-          </td>
-        </tr>
-      </tbody>
-      </table>
-  	
-      <div ng-if="isLoggedIn()" id="threadCreationContainer">
-  	  	<h3 id="threadIntro">Add a new thread!</h3>
-        <form ng-submit="addThread()">
-  		<div class="input-group">
-    <input type="text" class="form-control" placeholder="Topic" ng-model="thread.topic">
-  </div>
-      <div class="input-group">
-      <textarea rows="10" cols="90" class="form-control" placeholder="Post" ng-model="thread.post"></textarea>
+<div ng-if="sub_forum.forum_threads.length / 10 > 1">
+  Page {{current_page}}
+    (<span ng-repeat="n in threadsArray(sub_forum)">
+      <a ng-if="n != current_page" href="#/sub_forums/{{sub_forum._id}}/{{n}}">{{n}}</a>
+      <span ng-if="n == current_page">{{n}}</span>
+    </span>)
+</div>
+
+<md-toolbar layout="row" class="md-hue-3">
+  <div class="md-toolbar-tools">
+    <span id="forumTitle" layout="row" flex-gt-sm="100" flex>
+      <div flex-gt-sm="30" layout="column" flex>
+        Topic
       </div>
-  		<button type="submit">Post</button>
-		</form>
+      <div flex-gt-sm="20" layout="column" flex>
+        Posts
+      </div>
+      <div flex-gt-sm="25" layout="column" flex>
+        Started On
+      </div>
+      <div flex-gt-sm="25" layout="column" flex>
+        Last Post
+      </div>
+    </span>
   </div>
+</md-toolbar>
+
+<md-content layout="row" flex-gt-sm="100" flex>
+  <md-list flex-gt-sm="30" layout="column" flex>
+    <md-list-item class="md-3-line" ng-repeat="forum_thread in forum_threads">
+      <div class="md-list-item-text" layout="column">
+        <h3><a href="#/sub_forums/{{sub_forum._id}}/forum_threads/{{forum_thread._id}}/1">{{forum_thread.subject}}</a></h3>
+        <h4>by <a href="#/users_admin/{{forum_thread.user._id}}">{{forum_thread.user.username}}</a></h4>
+        <p>
+          <div ng-if="forum_thread.posts.length / 10 > 1">
+            <span ng-repeat="n in pagesArray(forum_thread)">
+              <a href="#/sub_forums/{{sub_forum._id}}/forum_threads/{{forum_thread._id}}/{{n}}">{{n}}</a>
+            </span>
+          </div>
+        </p>
+      </div>
+    </md-list-item>
+  </md-list>
+
+  <md-list flex-gt-sm="20" layout="column" flex>
+    <md-list-item class="md-2-line" ng-repeat="forum_thread in forum_threads">
+      <div class="md-list-item-text" layout="column">
+        <h3>{{forum_thread.posts.length}}</h3>        
+      </div>
+    </md-list-item>
+  </md-list>
+
+  <md-list flex-gt-sm="25" layout="column" flex>
+    <md-list-item class="md-2-line" ng-repeat="forum_thread in forum_threads">
+      <div class="md-list-item-text" layout="column">
+        <h3>{{forum_thread.created_at}}</h3>        
+      </div>
+    </md-list-item>
+  </md-list>
+
+  <md-list flex-gt-sm="25" layout="column" flex>
+    <md-list-item class="md-2-line" ng-repeat="forum_thread in forum_threads">
+      <div class="md-list-item-text" layout="column">
+        <h3>{{forum_thread.last_post_time}}</h3>
+      </div>
+    </md-list-item>
+  </md-list>
+</md-content>
+
+<div ng-if="isLoggedIn()" id="threadCreationContainer">
+ 	<h3 id="threadIntro">Add a new thread!</h3>
+    <form ng-submit="addThread()">
+    <div class="input-group">
+      <input type="text" class="form-control" placeholder="Topic" ng-model="thread.topic">
+    </div>
+    <div class="input-group">
+      <textarea rows="10" cols="90" class="form-control" placeholder="Post" ng-model="thread.post"></textarea>
+    </div>
+  	<button type="submit">Post</button>
+	</form>
+</div>
   		

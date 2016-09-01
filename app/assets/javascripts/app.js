@@ -120,13 +120,13 @@ angular.module('stoutForum', ['ui.router', 'ngMaterial', 'ngMessages', 'template
         .state('search', {
           url: '/search',
           templateUrl: 'search/_search.html',
-          controller: 'SearchCtrl'//,
-          //resolve: {
-          //  posts: ['posts', function(posts) {
-          //    posts = [];
-          //    return posts;
-          //  }]
-          //}
+          controller: 'SearchCtrl',
+          resolve: {
+            posts: ['posts', function(posts) {
+              posts.posts = [];
+              return posts;
+            }]
+          }
         });
 
   		$urlRouterProvider.otherwise('home');

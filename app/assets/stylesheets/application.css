@@ -106,9 +106,14 @@
 	font-family: 'Baloo Da', cursive; 
 	font-size: 200%;
 }
+
+#forumTitle {
+	font-family: 'Baloo Da', cursive;
+	font-size: 200%;
+}
 	
 #threadCreationContainer {
-	padding-top: 50px;
+	
 }
 
 #threadIntro {
