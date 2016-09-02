@@ -21,7 +21,7 @@
 <md-content class="md-padding" layout-xs="column" layout="row">
   <div flex-xs flex-gt-xs="100" layout="column">
     <md-card md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}" md-theme-watch layout="row" ng-repeat="post in posts">
-      <md-card-content flex-gt-xs="100" layout="row">
+      <md-card-content class="mainPostContainer" ng-if="post.upvotes - post.downvotes > -1 || showAllPosts" flex-gt-xs="100" layout="row">
         <div flex-xs flex-gt-xs="30" layout="column">
           <img ng-if="hasAvatar(post)" id="avatar" width="100" src="{{post.user.avatar}}">
           <a href="#/users_admin/{{post.user_id}}"><p id="userName">{{post.user.username}}</p></a>
@@ -55,6 +55,9 @@
             </div>
           </div>
         </div>
+      </md-card-content>
+      <md-card-content class="downvotedPostMessage" ng-if="post.upvotes - post.downvotes < 0 && !showAllPosts" ng-click="showPosts()" flex-gt-xs="100" layout="row">
+        Post hidden due to downvotes. Click to show all posts!
       </md-card-content>
     </md-card>
   </div>

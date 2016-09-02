@@ -11,6 +11,7 @@ angular.module('stoutForum')
    $scope.forum_thread = forum_thread;
    $scope.posts = posts.posts;
    $scope.current_page = $stateParams.page
+   $scope.showAllPosts = false;
       
    $scope.addPost = function(){
       console.log($scope.body);
@@ -72,6 +73,9 @@ angular.module('stoutForum')
          pages.push(i + 1);
       }
       return pages;
+   };
+   $scope.showPosts = function(container){
+      $scope.showAllPosts = true;
    };
    //$scope.addPost = function(){
    //	 if(!$scope.title || $scope.title === '') { return; }
