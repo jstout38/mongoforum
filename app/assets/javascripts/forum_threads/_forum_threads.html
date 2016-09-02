@@ -73,14 +73,25 @@
   </span>)
 </div>
 
-<div id="createPostContainer" ng-if="isLoggedIn()">
-  <h3>Add a new post!</h3>
-  <form ng-submit="addPost()">
-    <div class="input-group">
-      <textarea rows="10" cols="90" class="form-control" ng-model="$parent.body"></textarea>
+
+<md-content layout-padding ng-if="isLoggedIn()">
+  <form ng-submit="addPost()" name="postForm">
+    <div class="row">
+      <div class="postLabel col-md-6 col-md-offset-3">
+        Make a new post!
+      </div>
     </div>
-    <button type="submit">Post</button>
+    <div class="row">
+      <md-input-container class="col-md-6 col-md-offset-3">        
+        <textarea rows="5" name="newPost" ng-model="$parent.body"></textarea>
+      </md-input-container>
+    </div>
+      <div class="row">   
+      <div class="col-md-offset-3">
+        <md-button type="submit">Post</md-button>
+      </div>
+    </div>
   </form>
-</div>
-       
+</md-content>
+
   	

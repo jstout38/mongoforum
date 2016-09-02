@@ -121,7 +121,7 @@ body {
 }
 
 #threadIntro {
-	padding-top: 50px;
+	
 }
 
 .form-control {
@@ -181,5 +181,10 @@ md-input-container {
 	font-family: 'Baloo Da', cursive;
 	font-size: 150%;
 	text-align: right;
+}
+
+.postLabel {
+	font-family: 'Baloo Da', cursive;
+	font-size: 150%;
 }
 
