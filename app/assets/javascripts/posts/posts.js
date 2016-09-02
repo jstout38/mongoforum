@@ -16,8 +16,13 @@ angular.module('stoutForum')
   	//};
     o.create = function(body, forum_thread) {
       return $http.post('/sub_forums/' + forum_thread.sub_forum_id + '/forum_threads/' + forum_thread._id + '/posts.json', body).success(function(data){
-        
         o.posts.push(data);
+        var currentUser = o.posts[o.posts.length - 1].user.id;
+        for (post of o.posts) {
+          if (post.user.id == currentUser) {
+            post.user.postCount++;
+          }
+        }
       });
     };
     o.upvote = function(forum_thread, post) {

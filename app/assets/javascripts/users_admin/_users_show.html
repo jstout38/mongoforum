@@ -8,7 +8,7 @@
 
 		<table class="col-md-6 col-md-offset-3 userInfo">
 			
-			<tr>
+			<tr ng-if="user.website">
 				<td class="col-md-4"> 
 					<span class="tableElementWrapper">Website URL:</span>
 				</td>
@@ -16,7 +16,7 @@
 					<span class="tableElementWrapper"><a href="{{user.website}}">{{user.website}}</a></span>
 				</td>
 			</tr>
-			<tr>
+			<tr ng-if="user.facebook">
 				<td class="col-md-4">
 					<span class="tableElementWrapper">Facebook URL:</span>
 				</td>
@@ -24,7 +24,7 @@
 					<span class="tableElementWrapper"><a href="{{user.facebook}}">{{user.facebook}}</a></span>
 				</td>
 			</tr>
-			<tr>
+			<tr ng-if="user.twitter">
 				<td class="col-md-4">
 					<span class="tableElementWrapper">Twitter URL:</span>
 				</td>
@@ -32,7 +32,7 @@
 					<span class="tableElementWrapper"><a href="{{user.twitter}}">{{user.twitter}}</a></span>
 				</td>
 			</tr>
-			<tr>
+			<tr ng-if="user.linked_in">
 				<td class="col-md-4">
 					<span class="tableElementWrapper">LinkedIn URL:</span>
 				</td>
@@ -40,7 +40,7 @@
 					<span class="tableElementWrapper"><a href="{{user.linked_in}}">{{user.linked_in}}<span>
 				</td>
 			</tr>
-			<tr>
+			<tr ng-if="user.location">
 				<td class="col-md-4">
 					<span class="tableElementWrapper">Location:</span>
 				</td>
@@ -48,7 +48,7 @@
 					<span class="tableElementWrapper">{{user.location}}</span>
 				</td>
 			</tr>
-			<tr>
+			<tr ng-if="user.occupation">
 				<td class="col-md-4">
 					<span class="tableElementWrapper">Occupation:</span>
 				</td>
@@ -56,7 +56,7 @@
 					<span class="tableElementWrapper">{{user.occupation}}</span>
 				</td>
 			</tr>
-			<tr>
+			<tr ng-if="user.interests">
 				<td class="col-md-4">
 					<span class="tableElementWrapper">Interests:</span>
 				</td>
@@ -64,7 +64,7 @@
 					<span class="tableElementWrapper">{{user.interests}}</span>
 				</td>
 			</tr>
-			<tr>
+			<tr ng-if="user.birthday">
 				<td class="col-md-4">
 					<span class="tableElementWrapper">Birthdate:</span>
 				</td>
@@ -72,7 +72,7 @@
 					<span class="tableElementWrapper">{{user.birthday.toDateString()}}</span>
 				</td>
 			</tr>
-			<tr>
+			<tr ng-if="user.signature">
 				<td class="col-md-4">
 					<span class="tableElementWrapper">Signature:</span>
 				</td>
@@ -80,7 +80,22 @@
 					<span class="tableElementWrapper">{{user.signature}}</span>
 				</td>
 			</tr>
-			
+			<tr>
+				<td class="col-md-4">
+					<span class="tableElementWrapper">Posts:</span>
+				</td>
+				<td>
+					<span class="tableElementWrapper">{{user.postCount}}</span>
+				</td>
+			</tr>
+			<tr>
+				<td class="col-md-4">
+					<span class="tableElementWrapper">Joined:</span>
+				</td>
+				<td>
+					<span class="tableElementWrapper">{{user.created_at}}</span>
+				</td>
+			</tr>
 		</table>
 	
 

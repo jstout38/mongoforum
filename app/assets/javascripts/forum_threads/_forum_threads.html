@@ -25,6 +25,7 @@
         <div flex-xs flex-gt-xs="30" layout="column">
           <img ng-if="hasAvatar(post)" id="avatar" width="100" src="{{post.user.avatar}}">
           <a href="#/users_admin/{{post.user_id}}"><p id="userName">{{post.user.username}}</p></a>
+          <p>Posts: {{post.user.postCount}}</p>
           <div id="socialMedia">
             <a ng-if="hasTwitter(post)" class="btn btn-social-icon btn-m btn-twitter" href="{{post.user.twitter}}">
               <span class="fa fa-twitter"></span>

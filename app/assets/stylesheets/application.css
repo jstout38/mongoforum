@@ -20,6 +20,9 @@
 
 @import 'https://fonts.googleapis.com/css?family=Baloo+Da';
 
+body {
+	background-color: #FAFAFA;
+}
 
 .forumTable > td {
 	border: 1px solid black !important;
@@ -105,6 +108,7 @@
 #userName {
 	font-family: 'Baloo Da', cursive; 
 	font-size: 200%;
+	margin-bottom: 0px;
 }
 
 #forumTitle {
