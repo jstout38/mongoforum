@@ -17,6 +17,7 @@
 //= require angular-aria
 //= require angular-messages
 //= require angular-material
+//= require angular-material-icons
 //= require angular-rails-templates
 //= require AngularDevise
 //= require angular-ui-router

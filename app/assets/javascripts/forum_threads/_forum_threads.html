@@ -50,9 +50,8 @@
             </div>
             <div id="voting">                  
               <p>____________________</p>
-              Like this post? 
-              <i class="fa fa-thumbs-up" aria-hidden="true" ng-click="incrementUpvotes(forum_thread, post)"></i> {{post.upvotes}}
-              <i class="fa fa-thumbs-down" aria-hidden="true" ng-click="incrementDownvotes(forum_thread, post)"></i> {{post.downvotes}}                  
+              <ng-md-icon icon="thumb_up" ng-click="incrementUpvotes(forum_thread, post)"></ng-md-icon>  <span class="votes"> {{post.upvotes}} </span>
+              <ng-md-icon icon="thumb_down" ng-click="incrementDownvotes(forum_thread, post)"></ng-md-icon>  <span class="votes"> {{post.downvotes}} </span>
             </div>
           </div>
         </div>

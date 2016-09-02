@@ -1,4 +1,4 @@
-angular.module('stoutForum', ['ui.router', 'ngMaterial', 'ngMessages', 'templates', 'Devise'])
+angular.module('stoutForum', ['ui.router', 'ngMaterial', 'ngMessages', 'ngMdIcons', 'templates', 'Devise'])
   .config([
   	'$stateProvider',
   	'$urlRouterProvider',
