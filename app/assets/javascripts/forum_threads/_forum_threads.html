@@ -4,8 +4,8 @@
   </h1>
 </div>
 
-<div ng-if="forum_thread.posts.length / 10 > 1">
-  Page {{current_page}}
+<div class="pages" ng-if="forum_thread.posts.length / 10 > 1">
+  Page {{current_page}} &nbsp
   (<span ng-repeat="n in pagesArray(forum_thread)">
     <a ng-if="n != current_page" href="#/sub_forums/{{forum_thread.sub_forum_id}}/forum_threads/{{forum_thread._id}}/{{n}}">{{n}}</a>
     <span ng-if="n == current_page">{{n}}</span>
@@ -21,7 +21,7 @@
 <md-content class="md-padding" layout-xs="column" layout="row">
   <div flex-xs flex-gt-xs="100" layout="column">
     <md-card md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}" md-theme-watch layout="row" ng-repeat="post in posts">
-      <md-card-content class="mainPostContainer" ng-if="post.upvotes - post.downvotes > -1 || showAllPosts" flex-gt-xs="100" layout="row">
+      <md-card-content class="mainPostContainer" ng-if="post.upvotes - post.downvotes > -1 || showAllPosts" ng-style="downStyle" flex-gt-xs="100" layout="row">
         <div flex-xs flex-gt-xs="30" layout="column">
           <img ng-if="hasAvatar(post)" id="avatar" width="100" src="{{post.user.avatar}}">
           <a href="#/users_admin/{{post.user_id}}"><p id="userName">{{post.user.username}}</p></a>
@@ -51,7 +51,9 @@
             <div id="voting">                  
               <p>____________________</p>
               <ng-md-icon icon="thumb_up" ng-click="incrementUpvotes(forum_thread, post)"></ng-md-icon>  <span class="votes"> {{post.upvotes}} </span>
-              <ng-md-icon icon="thumb_down" ng-click="incrementDownvotes(forum_thread, post)"></ng-md-icon>  <span class="votes"> {{post.downvotes}} </span>
+              <ng-md-icon icon="thumb_down" ng-click="incrementDownvotes(forum_thread, post)"></ng-md-icon>  
+              <span class="votes downvoteRed" ng-if="post.downvotes > post.upvotes"> {{post.downvotes}} </span>
+              <span class="votes" ng-if="post.upvotes >= post.downvotes"> {{post.downvotes}} </span>
             </div>
           </div>
         </div>
@@ -62,6 +64,14 @@
     </md-card>
   </div>
 </md-content>
+
+<div class="pages" ng-if="forum_thread.posts.length / 10 > 1">
+  Page {{current_page}} &nbsp
+  (<span ng-repeat="n in pagesArray(forum_thread)">
+    <a ng-if="n != current_page" href="#/sub_forums/{{forum_thread.sub_forum_id}}/forum_threads/{{forum_thread._id}}/{{n}}">{{n}}</a>
+    <span ng-if="n == current_page">{{n}}</span>
+  </span>)
+</div>
 
 <div id="createPostContainer" ng-if="isLoggedIn()">
   <h3>Add a new post!</h3>

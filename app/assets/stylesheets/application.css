@@ -113,7 +113,7 @@ body {
 
 #forumTitle {
 	font-family: 'Baloo Da', cursive;
-	font-size: 200%;
+	font-size: 150%;
 }
 	
 #threadCreationContainer {
@@ -169,6 +169,17 @@ md-input-container {
 	margin-right: 5px;
 }
 
+.downvoteRed {
+	color: red;
+}
 
+.page-header {
+	font-family: 'Baloo Da', cursive;
+}
 
+.pages {
+	font-family: 'Baloo Da', cursive;
+	font-size: 150%;
+	text-align: right;
+}
 

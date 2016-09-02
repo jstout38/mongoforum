@@ -4,7 +4,7 @@
   </h1>
 </div>
 
-<div ng-if="sub_forum.forum_threads.length / 10 > 1">
+<div class="pages" ng-if="sub_forum.forum_threads.length / 10 > 1">
   Page {{current_page}}
     (<span ng-repeat="n in threadsArray(sub_forum)">
       <a ng-if="n != current_page" href="#/sub_forums/{{sub_forum._id}}/{{n}}">{{n}}</a>
