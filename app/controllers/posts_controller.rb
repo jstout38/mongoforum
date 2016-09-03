@@ -73,16 +73,26 @@ class PostsController < ApplicationController
 	end
 
 	def search		
-		if (params[:post_search] != "undefined" && params[:user] != "undefined")
-			@results = Post.where(body: /#{params[:post_search]}/i).where(creator_name: /#{params[:user]}/i).order_by(:created_at => "desc").paginate(page: params[:page], per_page: 10)
-		elsif (params[:user] == "undefined")
-			@results = Post.where(body: /#{params[:post_search]}/i).order_by(:created_at => "desc").paginate(page: params[:page], per_page: 10)
-		elsif (params[:post_search] == "undefined")
+		if (params[:keywords] != "undefined" && params[:user] != "undefined")
+			@results = Post.where(body: /#{params[:keywords]}/i).where(creator_name: /#{params[:user]}/i).order_by(:created_at => "desc").paginate(page: params[:page], per_page: 10)
+		elsif (params[:user] == "undefined" && params[:keywords] != "undefined")
+			@results = Post.where(body: /#{params[:keywords]}/i).order_by(:created_at => "desc").paginate(page: params[:page], per_page: 10)
+		elsif (params[:keywords] == "undefined" && params[:user] != "undefined")
 			@results = Post.where(creator_name: /#{params[:user]}/i).order_by(:created_at => "desc").paginate(page: params[:page], per_page: 10)
 		else
-			@results = ""
+			@results = "No results found!"
 		end
-		render json: @results
+		if @results == "No results found!"
+		  @forum_thread_results = "No results found!"
+		else
+		  @thread_ids = @results.map {|post| post.forum_thread_id}.uniq
+		  @forum_thread_results = []
+		  @thread_ids.each do |thread_id|
+		    @forum_thread_results.push(ForumThread.find(thread_id))
+		  end
+		end
+		@full_results = {:posts => @results, :threads => @forum_thread_results}
+		render json: @full_results
 	end
 
 		private

@@ -4,7 +4,8 @@ angular.module('stoutForum')
  	'$state',
  	'posts',
  	function($scope, $state, posts){
- 		$scope.results = posts.posts
+ 		//$scope.results = ""
+ 		//$scope.thread_results = ""
  		//$scope.user = {}
  		//$scope.user.birthday = new Date();
  		//$scope.hasAvatar = function() {
@@ -21,9 +22,8 @@ angular.module('stoutForum')
  		//};
  		$scope.search = function() {
  			posts.search($scope.search_hash).then(function(res){
- 				$scope.results = res.data;
- 				console.log($scope.results);
- 				return res;
+ 				$scope.results = res.data.posts;
+ 				$scope.thread_results = res.data.threads; 				
  			});//, function(errors){
  			//	$scope.responseMessage = errors.data;
  			//});

@@ -42,9 +42,16 @@ angular.module('stoutForum')
         });
     };
     o.search = function(search_hash) {
-      return $http.get('/search/1/' + search_hash.post_search + '/' + search_hash.user_search).success(function(data){
-        console.log(data);
-        o.posts.push(data);
+      var keyword = search_hash.post_search;
+      var user = search_hash.user_search;
+      if (search_hash.post_search == "") {
+        keyword = "undefined";
+      }
+      if (search_hash.user_search == "") {
+        user = "undefined";
+      }
+      return $http.get('/search/1/' + keyword + '/' + user).success(function(data){        
+        //o.posts.push(data);
       });
     }
   	return o;

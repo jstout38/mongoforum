@@ -44,18 +44,39 @@
   </span>)
 </div>-->
 
-<md-content class="md-padding" layout-xs="column" layout="row">
-  <div flex-xs flex-gt-xs="100" layout="column">
-    <md-card md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}" md-theme-watch layout="row" ng-repeat="post in results">
-      <md-card-content class="mainPostContainer" ng-style="downStyle" flex-gt-xs="100" layout="row">
-        <div flex-xs flex-gt-xs="30" layout="column">                 
-            <p>{{post.forum_thread_topic}}</p>
-            <p id="timeStamp">Posted at {{post.created_at}}</p><p>{{post.body}}<p>
-           
-          
-        
-      </md-card-content>
-      
-    </md-card>
-  </div>
-</md-content>
+
+
+<div ng-cloak>
+  <md-content ng-if="results.length > 0">
+    <md-tabs md-dynamic-height md-border-bottom>
+      <md-tab label="posts">
+        <md-content class="md-padding">          
+          <md-content class="md-padding" layout-xs="column" layout="row">
+  			<div flex-xs flex-gt-xs="100" layout="column">
+    		  <md-card md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}" md-theme-watch layout="row" ng-repeat="post in results">
+      			<md-card-content class="mainPostContainer" ng-style="downStyle" flex-gt-xs="100" layout="row">
+        		  <div flex-xs flex-gt-xs="30" layout="column">                 
+          			<p>{{post.forum_thread_topic}}</p>
+          			<p id="timeStamp">Posted at {{post.created_at}} by by <a href="#/users_admin/{{post.user_id}}">{{post.creator_name}}</a></p>
+          			<p>{{post.body}}<p> 
+          		  </div>
+      			</md-card-content>      
+    		  </md-card>
+  			</div>
+		  </md-content>
+        </md-content>
+      </md-tab>
+      <md-tab label="Threads">
+        <md-content class="md-padding">
+          <md-list flex>
+    		<md-list-item class="md-2-line" ng-repeat="result in thread_results">
+      		  <div class="md-list-item-text" layout="column">
+        		<h3><a href="#/sub_forums/{{result.sub_forum_id}}/forum_threads/{{result._id}}/1">{{result.subject}}</a></h3>        
+      		  </div>
+    		</md-list-item>
+  		  </md-list>
+        </md-content>
+      </md-tab>      
+    </md-tabs>
+  </md-content>
+</div>
