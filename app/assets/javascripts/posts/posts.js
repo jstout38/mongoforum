@@ -19,7 +19,7 @@ angular.module('stoutForum')
         o.posts.push(data);
         var currentUser = o.posts[o.posts.length - 1].user.id;
         for (post of o.posts) {
-          if (post.user.id == currentUser) {
+          if (post.upvoteser.id == currentUser) {
             post.user.postCount++;
           }
         }
@@ -42,7 +42,8 @@ angular.module('stoutForum')
         });
     };
     o.search = function(search_hash) {
-      return $http.post('/search', search_hash).success(function(data){
+      return $http.get('/search/1/' + search_hash.post_search + '/' + search_hash.user_search).success(function(data){
+        console.log(data);
         o.posts.push(data);
       });
     }

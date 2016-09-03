@@ -6,12 +6,14 @@ class Post
   field :upvotes, type: Integer, default: 0
   field :voters, type: Array, default: []
   field :downvotes, type: Integer, default: 0
+  field :creator_name, type: String
 
   belongs_to :user, foreign_key: "user_id"
   belongs_to :forum_thread, foreign_key: "forum_thread_id"     
 
   def addUser(user)
     self.user = user
+    self.creator_name = user.username
   end
 
   def as_json(options = {})
@@ -42,7 +44,9 @@ class Post
     res["_id"] = res["_id"].to_s
     res["sub_forum_id"] = res["sub_forum_id"].to_s
     res["created_at"] = res["created_at"].strftime("%I:%M%p on %m/%d/%Y")
-    res["user_id"] = res["user_id"].to_s
+    res["user_id"] = res["user_id"].to_s    
+    current_forum_thread = ForumThread.find(res["forum_thread_id"])
+    res["forum_thread_topic"] = forum_thread.subject    
 
     res
   end

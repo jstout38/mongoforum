@@ -6,12 +6,13 @@
 <form ng-submit="search()" name="searchForm">
 		
 				<div class="row">
-				<md-input-container class="col-md-4 col-md-offset-4">
-				<label>Search posts</label>
-				<input md-maxlength="40" required name="post_search" ng-model="search_hash.post_search">
-				<div ng-messages="searchForm.post_search.$error" multiple md-auto-hide="false">
-					<div ng-message="required">Required.</div>					
-				</div>
+				<md-input-container class="col-md-4 col-md-offset-2">
+				<label>Keywords</label>
+				<input md-maxlength="40" name="post_search" ng-model="search_hash.post_search">				
+				</md-input-container>
+				<md-input-container class="col-md-4">
+				<label>Username</label>
+				<input md-maxlength="40" name="user_search" ng-model="search_hash.user_search">				
 				</md-input-container>
 				</div>				
 				<!--
@@ -35,6 +36,26 @@
 </form>
 </md-content>
 
-<p ng-repeat = "post in results">
-	{{post.created_at}} - {{post.body}}
-</p>
+<!--<div class="pages" ng-if="posts.length / 10 > 1">
+  Page {{current_page}} &nbsp
+  (<span ng-repeat="n in pagesArray(forum_thread)">
+    <a ng-if="n != current_page" href="#/sub_forums/{{forum_thread.sub_forum_id}}/forum_threads/{{forum_thread._id}}/{{n}}">{{n}}</a>
+    <span ng-if="n == current_page">{{n}}</span>
+  </span>)
+</div>-->
+
+<md-content class="md-padding" layout-xs="column" layout="row">
+  <div flex-xs flex-gt-xs="100" layout="column">
+    <md-card md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}" md-theme-watch layout="row" ng-repeat="post in results">
+      <md-card-content class="mainPostContainer" ng-style="downStyle" flex-gt-xs="100" layout="row">
+        <div flex-xs flex-gt-xs="30" layout="column">                 
+            <p>{{post.forum_thread_topic}}</p>
+            <p id="timeStamp">Posted at {{post.created_at}}</p><p>{{post.body}}<p>
+           
+          
+        
+      </md-card-content>
+      
+    </md-card>
+  </div>
+</md-content>

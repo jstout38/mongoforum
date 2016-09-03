@@ -73,7 +73,15 @@ class PostsController < ApplicationController
 	end
 
 	def search		
-		@results = Post.where(body: /#{params[:post_search]}/i).order_by(:created_at => "desc")
+		if (params[:post_search] != "undefined" && params[:user] != "undefined")
+			@results = Post.where(body: /#{params[:post_search]}/i).where(creator_name: /#{params[:user]}/i).order_by(:created_at => "desc").paginate(page: params[:page], per_page: 10)
+		elsif (params[:user] == "undefined")
+			@results = Post.where(body: /#{params[:post_search]}/i).order_by(:created_at => "desc").paginate(page: params[:page], per_page: 10)
+		elsif (params[:post_search] == "undefined")
+			@results = Post.where(creator_name: /#{params[:user]}/i).order_by(:created_at => "desc").paginate(page: params[:page], per_page: 10)
+		else
+			@results = ""
+		end
 		render json: @results
 	end
 
