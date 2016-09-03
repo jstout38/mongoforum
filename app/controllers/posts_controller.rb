@@ -74,24 +74,25 @@ class PostsController < ApplicationController
 
 	def search		
 		if (params[:keywords] != "undefined" && params[:user] != "undefined")
-			@results = Post.where(body: /#{params[:keywords]}/i).where(creator_name: /#{params[:user]}/i).order_by(:created_at => "desc").paginate(page: params[:page], per_page: 10)
+			@raw_results = Post.where(body: /#{params[:keywords]}/i).where(creator_name: /#{params[:user]}/i).order_by(:created_at => "desc")
 		elsif (params[:user] == "undefined" && params[:keywords] != "undefined")
-			@results = Post.where(body: /#{params[:keywords]}/i).order_by(:created_at => "desc").paginate(page: params[:page], per_page: 10)
+			@raw_results = Post.where(body: /#{params[:keywords]}/i).order_by(:created_at => "desc")
 		elsif (params[:keywords] == "undefined" && params[:user] != "undefined")
-			@results = Post.where(creator_name: /#{params[:user]}/i).order_by(:created_at => "desc").paginate(page: params[:page], per_page: 10)
+			@raw_results = Post.where(creator_name: /#{params[:user]}/i).order_by(:created_at => "desc")
 		else
 			@results = "No results found!"
-		end
+		end		
 		if @results == "No results found!"
 		  @forum_thread_results = "No results found!"
 		else
-		  @thread_ids = @results.map {|post| post.forum_thread_id}.uniq
-		  @forum_thread_results = []
-		  @thread_ids.each do |thread_id|
-		    @forum_thread_results.push(ForumThread.find(thread_id))
-		  end
+		  @results = @raw_results.paginate(page: params[:post_page], per_page: 10)		  
+		  @thread_ids = @raw_results.map {|post| post.forum_thread_id}.uniq
+		  puts @thread_ids
+		  @forum_thread_results = ForumThread.where(:_id => {:$in  => @thread_ids } )
+		  @forum_thread_count = @forum_thread_results.count
+		  @forum_thread_results = @forum_thread_results.paginate(page: params[:thread_page], per_page: 10)
 		end
-		@full_results = {:posts => @results, :threads => @forum_thread_results}
+		@full_results = {:posts => @results, :threads => @forum_thread_results, :post_count => @raw_results.count, :forum_thread_count => @forum_thread_count}
 		render json: @full_results
 	end
 

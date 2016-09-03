@@ -41,7 +41,7 @@ angular.module('stoutForum')
           }
         });
     };
-    o.search = function(search_hash) {
+    o.search = function(search_hash, post_page, thread_page) {
       var keyword = search_hash.post_search;
       var user = search_hash.user_search;
       if (search_hash.post_search == "") {
@@ -50,7 +50,7 @@ angular.module('stoutForum')
       if (search_hash.user_search == "") {
         user = "undefined";
       }
-      return $http.get('/search/1/' + keyword + '/' + user).success(function(data){        
+      return $http.get('/search/' + post_page + '/' + thread_page + '/' + keyword + '/' + user).success(function(data){        
         //o.posts.push(data);
       });
     }

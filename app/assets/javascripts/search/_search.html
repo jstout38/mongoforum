@@ -3,7 +3,7 @@
 </div>
 
 <md-content layout-padding>
-<form ng-submit="search()" name="searchForm">
+<form ng-submit="search(1, 1)" name="searchForm">
 		
 				<div class="row">
 				<md-input-container class="col-md-4 col-md-offset-2">
@@ -50,6 +50,13 @@
   <md-content ng-if="results.length > 0">
     <md-tabs md-dynamic-height md-border-bottom>
       <md-tab label="posts">
+        <div class="pages" ng-if="post_count / 10 > 1">
+  		  Page {{current_page_posts}} &nbsp
+  		  (<span ng-repeat="n in pagesArray(post_count)">
+    	    <span ng-if="n != current_page_posts" class="page_link" ng-click="search(n, current_page_threads)">{{n}}</span>
+    	    <span ng-if="n == current_page_posts">{{n}}</span>
+  		  </span>)
+		</div>
         <md-content class="md-padding">          
           <md-content class="md-padding" layout-xs="column" layout="row">
   			<div flex-xs flex-gt-xs="100" layout="column">
@@ -67,6 +74,13 @@
         </md-content>
       </md-tab>
       <md-tab label="Threads">
+      	<div class="pages" ng-if="forum_thread_count / 10 > 1">
+  		  Page {{current_page_threads}} &nbsp
+  		  (<span ng-repeat="n in pagesArray(forum_thread_count)">
+    	    <span ng-if="n != current_page_threads" class="page_link" ng-click="search(current_page_posts, n)">{{n}}</span>
+    	    <span ng-if="n == current_page_threads">{{n}}</span>
+  		  </span>)
+		</div>
         <md-content class="md-padding">
           <md-list flex>
     		<md-list-item class="md-2-line" ng-repeat="result in thread_results">
@@ -78,5 +92,8 @@
         </md-content>
       </md-tab>      
     </md-tabs>
+  </md-content>
+  <md-content ng-if="results.length == 0">
+  	No results found!
   </md-content>
 </div>

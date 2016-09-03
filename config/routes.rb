@@ -20,7 +20,7 @@ Rails.application.routes.draw do
       end
     end
   end
-  get '/search/:page/:keywords/:user' => 'posts#search'
+  get '/search/:post_page/:thread_page/:keywords/:user' => 'posts#search'
 
 end
   
