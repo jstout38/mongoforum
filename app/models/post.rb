@@ -49,7 +49,8 @@ class Post
     res["created_at"] = res["created_at"].strftime("%I:%M%p on %m/%d/%Y")
     res["user_id"] = res["user_id"].to_s    
     current_forum_thread = ForumThread.find(res["forum_thread_id"])
-    res["forum_thread_topic"] = forum_thread.subject    
+    res["forum_thread_topic"] = current_forum_thread.subject
+    
 
     res
   end

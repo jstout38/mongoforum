@@ -25,6 +25,7 @@ angular.module('stoutForum')
  			$scope.current_page_posts = post_page;
  			$scope.current_page_threads = thread_page;
  			posts.search($scope.search_hash, post_page, thread_page).then(function(res){
+ 				console.log(res.data.posts);
  				$scope.results = res.data.posts;
  				$scope.thread_results = res.data.threads;
  				$scope.post_count = res.data.post_count;

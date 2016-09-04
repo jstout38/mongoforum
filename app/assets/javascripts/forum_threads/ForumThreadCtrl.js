@@ -17,9 +17,11 @@ angular.module('stoutForum')
    $scope.showAllPosts = false;   
         
    $document.ready(function(){
-      id = $location.absUrl().split('#')[2];      
-      $location.hash(id);
-      $anchorScroll();      
+      urlParts = $location.absUrl().split('#');
+      if (urlParts.length > 2) {      
+         $location.hash(id);
+         $anchorScroll();      
+      }
    });
    $scope.addPost = function(){
       console.log($scope.body);

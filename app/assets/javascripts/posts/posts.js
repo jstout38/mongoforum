@@ -44,13 +44,18 @@ angular.module('stoutForum')
     o.search = function(search_hash, post_page, thread_page) {
       var keyword = search_hash.post_search;
       var user = search_hash.user_search;
+      var time = search_hash.time;
+      var topic = search_hash.thread_search;
       if (search_hash.post_search == "") {
         keyword = "undefined";
       }
       if (search_hash.user_search == "") {
         user = "undefined";
       }
-      return $http.get('/search/' + post_page + '/' + thread_page + '/' + keyword + '/' + user).success(function(data){        
+      if (search_hash.thread_search == "") {
+        topic = "undefined";
+      }
+      return $http.get('/search/' + post_page + '/' + thread_page + '/' + time + '/' + keyword + '/' + user + '/' + topic).success(function(data){        
         //o.posts.push(data);
       });
     }

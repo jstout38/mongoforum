@@ -74,21 +74,30 @@ class PostsController < ApplicationController
 	end
 
 	def search		
-		if (params[:keywords] != "undefined" && params[:user] != "undefined")
-			@raw_results = Post.where(body: /#{params[:keywords]}/i).where(creator_name: /#{params[:user]}/i).order_by(:created_at => "desc")
-		elsif (params[:user] == "undefined" && params[:keywords] != "undefined")
-			@raw_results = Post.where(body: /#{params[:keywords]}/i).order_by(:created_at => "desc")
-		elsif (params[:keywords] == "undefined" && params[:user] != "undefined")
-			@raw_results = Post.where(creator_name: /#{params[:user]}/i).order_by(:created_at => "desc")
-		else
-			@results = "No results found!"
-		end		
-		if @results == "No results found!"
-		  @forum_thread_results = "No results found!"
+		if params[:time] != 0
+			start_date = Date.today - params[:time].to_i
+		else 
+			start_date = Date.new(2000,1,1)
+		end
+		@raw_results = Post.where(:"created_at" => {:$gte =>start_date } )
+		if params[:keywords] != "undefined"
+			@raw_results = @raw_results.where(body: /#{params[:keywords]}/i)
+		end
+		if params[:user] != "undefined"
+			@raw_results = @raw_results.where(creator_name: /#{params[:user]}/i)
+		end
+		if params[:topic] != "undefined"
+			@topics = ForumThread.where(subject: /#{params[:topic]}/i)
+			@topic_ids = @topics.map {|topic| topic._id}
+			@raw_results = @raw_results.where(:forum_thread_id => {:$in => @topic_ids } )
+		end
+		@raw_results = @raw_results.order_by(:created_at => "desc")
+		if @raw_results.count == 0
+			@results = []
+			@forum_thread_results =[]
 		else
 		  @results = @raw_results.paginate(page: params[:post_page], per_page: 10)		  
-		  @thread_ids = @raw_results.map {|post| post.forum_thread_id}.uniq
-		  puts @thread_ids
+		  @thread_ids = @raw_results.map {|post| post.forum_thread_id}.uniq		  
 		  @forum_thread_results = ForumThread.where(:_id => {:$in  => @thread_ids } )
 		  @forum_thread_count = @forum_thread_results.count
 		  @forum_thread_results = @forum_thread_results.paginate(page: params[:thread_page], per_page: 10)

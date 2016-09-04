@@ -6,13 +6,17 @@
 <form ng-submit="search(1, 1)" name="searchForm">
 		
 				<div class="row">
-				<md-input-container class="col-md-4 col-md-offset-2">
-				<label>Keywords</label>
+				<md-input-container class="col-md-4">
+				<label>Keywords (must be at least 3 characters long)</label>
 				<input md-maxlength="40" name="post_search" ng-model="search_hash.post_search">				
 				</md-input-container>
 				<md-input-container class="col-md-4">
 				<label>Username</label>
 				<input md-maxlength="40" name="user_search" ng-model="search_hash.user_search">				
+				</md-input-container>
+				<md-input-container class="col-md-4">
+				<label>Topic</label>
+				<input md-maxlength="40" name="thread_search" ng-model="search_hash.thread_search">
 				</md-input-container>
 				</div>				
 				<!--
@@ -28,9 +32,28 @@
 				</md-input-container>								
 				</div>
 				-->
+				<div class="row col-md-12">
+				  <md-input-container class="col-md-4 col-md-offset-4" flex-gt-sm>
+            		<label>Search Posts From:</label>
+            		<md-select ng-model="search_hash.time">
+              		  <md-option selected value=7>
+                	    Last Week
+              		  </md-option>
+              		  <md-option value=30>
+              		    Last Month
+              		  </md-option>
+              		  <md-option value=365>
+              		    Last Year
+              		  </md-option>
+              		  <md-option value=0>
+              		    All Time
+              		  </md-option>
+            		</md-select>
+          		  </md-input-container>
+          		</div>
 				<div class="row col-md-12">		
-					<md-button class="login-button" type="submit">Search!</md-button>
-					<div class="errorContainer">{{responseMessage["error"]}}</div>
+				  <md-button class="login-button" type="submit">Search!</md-button>
+				  <div class="errorContainer">{{responseMessage["error"]}}</div>
 				</div>		
 	
 </form>
@@ -85,7 +108,7 @@
           <md-card md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}" md-theme-watch layout="row" ng-repeat="result in thread_results">
       		<md-card-content class="mainPostContainer" ng-style="downStyle" flex-gt-xs="100" layout="row">
         	  <div flex-xs flex-gt-xs="30" layout="column">                 
-          		<p><a href="#/sub_forums/{{result.sub_forum_id}}/forum_threads/{{result._id}}/1">{{result.subject}}</a></h3></p>
+          		<h3><a href="#/sub_forums/{{result.sub_forum_id}}/forum_threads/{{result._id}}/1">{{result.subject}}</a></h3>
           		<p id="timeStamp">Created at {{result.created_at}} by <a href="#/users_admin/{{result.user._id}}">{{result.user.username}}</a></p>          			
           	  </div>
       		</md-card-content>      
