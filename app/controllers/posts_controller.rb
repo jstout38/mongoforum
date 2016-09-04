@@ -74,25 +74,34 @@ class PostsController < ApplicationController
 	end
 
 	def search		
+		hasResults = false
 		if params[:time] != 0
 			start_date = Date.today - params[:time].to_i
 		else 
-			start_date = Date.new(2000,1,1)
+			start_date = Date.new(2000,1,1)			
 		end
 		@raw_results = Post.where(:"created_at" => {:$gte =>start_date } )
-		if params[:keywords] != "undefined"
-			@raw_results = @raw_results.where(body: /#{params[:keywords]}/i)
+		if params[:keywords] != "undefined" && params[:keywords].length > 2
+			keywords = params[:keywords].split(/\s(?=(?:[^"]|"[^"]*")*$)/)
+			keywords.each do |keyword|
+			  if keyword.length > 2
+			  	@raw_results = @raw_results.where(body: /#{keyword}/i)
+			  end
+			end
+			hasResults = true
 		end
-		if params[:user] != "undefined"
+		if params[:user] != "undefined" && params[:user].length > 2
 			@raw_results = @raw_results.where(creator_name: /#{params[:user]}/i)
+			hasResults = true
 		end
-		if params[:topic] != "undefined"
+		if params[:topic] != "undefined" && params[:topic].length > 2
 			@topics = ForumThread.where(subject: /#{params[:topic]}/i)
-			@topic_ids = @topics.map {|topic| topic._id}
+			@topic_ids = @topics.map {|topic| topic._id}			
 			@raw_results = @raw_results.where(:forum_thread_id => {:$in => @topic_ids } )
+			hasResults = true
 		end
 		@raw_results = @raw_results.order_by(:created_at => "desc")
-		if @raw_results.count == 0
+		if @raw_results.count == 0 || !hasResults
 			@results = []
 			@forum_thread_results =[]
 		else
