@@ -20,7 +20,8 @@ class PostsController < ApplicationController
 	  @forum_thread = ForumThread.find(params[:forum_thread_id])
 	  @sub_forum = SubForum.find(@forum_thread.sub_forum_id)
 	  @post = @forum_thread.posts.create(post_params)
-	  @post.addUser(current_user)	  
+	  page_number = (@forum_thread.posts.length - 1) / 10 + 1
+	  @post.addUser(current_user, page_number)	  
 	  @post.save	  
 	  @forum_thread.add_last_post(@post)
 	  @forum_thread.save

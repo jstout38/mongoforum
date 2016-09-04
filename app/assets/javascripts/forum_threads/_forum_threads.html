@@ -20,7 +20,7 @@
 
 <md-content class="md-padding" layout-xs="column" layout="row">
   <div flex-xs flex-gt-xs="100" layout="column">
-    <md-card md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}" md-theme-watch layout="row" ng-repeat="post in posts">
+    <md-card md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}" md-theme-watch layout="row" ng-repeat="post in posts">      
       <md-card-content class="mainPostContainer" ng-if="post.upvotes - post.downvotes > -1 || showAllPosts" ng-style="downStyle" flex-gt-xs="100" layout="row">
         <div flex-xs flex-gt-xs="30" layout="column">
           <img ng-if="hasAvatar(post)" id="avatar" width="100" src="{{post.user.avatar}}">
@@ -41,7 +41,7 @@
             </a>                 
           </div>
         </div>
-        <div flex-gt-xs="70" layout="column">
+        <div id="{{post._id}}" flex-gt-xs="70" layout="column">
           <div>
             <p id="timeStamp">Posted at {{post.created_at}}</p><p>{{post.body}}<p>
             <div ng-if="hasSignature(post)" id="signatureWrapper">
@@ -60,7 +60,7 @@
       </md-card-content>
       <md-card-content class="downvotedPostMessage" ng-if="post.upvotes - post.downvotes < 0 && !showAllPosts" ng-click="showPosts()" flex-gt-xs="100" layout="row">
         Post hidden due to downvotes. Click to show all posts!
-      </md-card-content>
+      </md-card-content>      
     </md-card>
   </div>
 </md-content>
@@ -92,6 +92,4 @@
       </div>
     </div>
   </form>
-</md-content>
-
-  	
+</md-content>  	

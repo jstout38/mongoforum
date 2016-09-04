@@ -5,8 +5,7 @@ class ForumThread
   field :subject, type: String
   field :last_post_time, type: DateTime
   field :last_post_user, type: String
-  field :last_post_id, type: String
-  field :number_of_posts, type: Integer
+  field :last_post_id, type: String  
 
   has_many :posts
   belongs_to :sub_forum, foreign_key: "sub_forum_id"

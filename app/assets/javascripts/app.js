@@ -129,9 +129,7 @@ angular.module('stoutForum', ['ui.router', 'ngMaterial', 'ngMessages', 'ngMdIcon
           }
         });
 
+
   		$urlRouterProvider.otherwise('home');
+
   	}]);
-
-  
-
- 

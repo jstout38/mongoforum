@@ -20,8 +20,9 @@ class ForumThreadsController < ApplicationController
 	  @forum_thread = @sub_forum.forum_threads.build({subject: params[:title]})
 	  @forum_thread.user = current_user
 	  @forum_thread.save
-	  @post = @forum_thread.posts.create({body: params[:post]})
-	  @post.addUser(current_user)
+	  page_number = (@forum_thread.posts.length - 1) / 10 + 1
+	  @post = @forum_thread.posts.create({body: params[:post]})	  
+	  @post.addUser(current_user, page_number)
 	  @post.save	  
 	  @forum_thread.add_last_post(@post)
 	  @sub_forum.add_last_post(@post)

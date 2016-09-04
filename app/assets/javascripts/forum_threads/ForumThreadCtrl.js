@@ -6,13 +6,21 @@ angular.module('stoutForum')
  'posts',
  'Auth',
  '$stateParams',
- function($scope, forum_threads, forum_thread, posts, Auth, $stateParams){
+ '$location',
+ '$anchorScroll',
+ '$document',
+ function($scope, forum_threads, forum_thread, posts, Auth, $stateParams, $location, $anchorScroll, $document){
    
    $scope.forum_thread = forum_thread;
    $scope.posts = posts.posts;
    $scope.current_page = $stateParams.page
-   $scope.showAllPosts = false;
-      
+   $scope.showAllPosts = false;   
+        
+   $document.ready(function(){
+      id = $location.absUrl().split('#')[2];      
+      $location.hash(id);
+      $anchorScroll();      
+   });
    $scope.addPost = function(){
       console.log($scope.body);
       if(!$scope.body || $scope.body === '') {return;}
@@ -85,5 +93,6 @@ angular.module('stoutForum')
    //};
    //$scope.incrementUpvotes = function(post) {
    //  post.upvotes += 1;
+
    }
  ]);
