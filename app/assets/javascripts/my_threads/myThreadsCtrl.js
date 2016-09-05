@@ -1,27 +1,18 @@
 angular.module('stoutForum')
- .controller('SearchCtrl', [
+ .controller('myThreadsCtrl', [
  	'$scope',
  	'$state',
- 	'posts',   
- 	function($scope, $state, posts){
- 		 		
-      $scope.search = function(post_page, thread_page) {
- 			$scope.current_page_posts = post_page;
- 			$scope.current_page_threads = thread_page;
- 			posts.search($scope.search_hash, post_page, thread_page).then(function(res){ 				
- 				$scope.results = res.data.posts;
- 				$scope.thread_results = res.data.threads;
- 				$scope.post_count = res.data.post_count;
- 				$scope.forum_thread_count = res.data.forum_thread_count; 				
- 			});//, function(errors){
- 			//	$scope.responseMessage = errors.data;
- 			//});
- 		};
- 		$scope.pagesArray = function(post_count, type){
+ 	'posts',
+   'results',
+   '$location',   
+ 	function($scope, $state, posts, results, $location){
+ 		$scope.current_page_threads = results.current_page_threads;
+      $scope.thread_results = results.thread_results;
+      $scope.forum_thread_count = results.forum_thread_count;
+      
+      $scope.pagesArray = function(post_count, type){
       		var pages = [];
-      		if (type == "post") {
-      			var current_page = $scope.current_page_posts;
-      		}
+      		
       		if (type == "thread") {
       			var current_page = $scope.current_page_threads;
       		}
@@ -48,6 +39,9 @@ angular.module('stoutForum')
       }
       return pages;
    		};
+      $scope.go = function ( path ) {
+         $location.path( path );
+      };
  		//$scope.register = function() { 			
  		//	Auth.register($scope.user).then(function(){
  		//		$state.go('home');

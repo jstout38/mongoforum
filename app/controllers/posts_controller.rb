@@ -75,7 +75,7 @@ class PostsController < ApplicationController
 
 	def search		
 		hasResults = false
-		if params[:time] != 0
+		if params[:time] != "0"
 			start_date = Date.today - params[:time].to_i
 		else 
 			start_date = Date.new(2000,1,1)			
@@ -107,7 +107,7 @@ class PostsController < ApplicationController
 		else
 		  @results = @raw_results.paginate(page: params[:post_page], per_page: 10)		  
 		  @thread_ids = @raw_results.map {|post| post.forum_thread_id}.uniq		  
-		  @forum_thread_results = ForumThread.where(:_id => {:$in  => @thread_ids } ).order_by(:created_at => "desc")
+		  @forum_thread_results = ForumThread.where(:_id => {:$in  => @thread_ids } ).order_by(:last_post_time => "desc")
 		  @forum_thread_count = @forum_thread_results.count
 		  @forum_thread_results = @forum_thread_results.paginate(page: params[:thread_page], per_page: 10)
 		end

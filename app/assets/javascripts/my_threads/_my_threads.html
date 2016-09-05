@@ -1,0 +1,33 @@
+<div class="page-header">
+	<h1>My Threads</h1>
+</div>
+
+
+  <md-content ng-if="thread_results.length > 0">
+    
+       	<div class="pages" ng-if="forum_thread_count / 10 > 1">
+  		  Page {{current_page_threads}} &nbsp
+  		  (<span ng-repeat="n in pagesArray(forum_thread_count, 'thread') track by $index">
+    	    <a ng-if="n != current_page_threads && n != '...'" class="page_link" href="/#/my_threads/{{n}}">{{n}}</a>
+    	    <span ng-if="n == current_page_threads || n == '...'">{{n}}</span>
+  		  </span>)
+		</div>
+        <md-content class="md-padding">
+          <md-card md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}" md-theme-watch layout="row" ng-repeat="result in thread_results">
+      		<md-card-content class="mainPostContainer" ng-style="downStyle" flex-gt-xs="100" layout="row">
+        	  <div flex-xs flex-gt-xs="30" layout="column">                 
+          		<h3><a href="#/sub_forums/{{result.sub_forum_id}}/forum_threads/{{result._id}}/1">{{result.subject}}</a></h3>
+          		<p id="timeStamp">Created at {{result.created_at}} by <a href="#/users_admin/{{result.user._id}}">{{result.user.username}}</a></p>
+              <p>Last post at {{result.last_post_time}} by <a href="#/users_admin/{{result.last_post_id}}">{{result.last_post_user}}</a></p>          			
+          	  </div>
+      		</md-card-content>      
+    	  </md-card>
+          
+        </md-content>
+      </md-tab>      
+    </md-tabs>
+  </md-content>
+  <md-content ng-if="results.length == 0">
+  	No results found!
+  </md-content>
+</div>

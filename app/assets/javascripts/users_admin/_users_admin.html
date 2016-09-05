@@ -5,7 +5,7 @@
 <div class="pages" ng-if="total_users > 1">
   Page {{current_page}} &nbsp
   (<span ng-repeat="n in pagesArray(total_users) track by $index">
-    <a ng-if="n != current_page && n != '...'" href="#/users_admin/{{n}}">{{n}}</a>
+    <a ng-if="n != current_page && n != '...'" href="#/users_admin  /{{n}}">{{n}}</a>
     <span ng-if="n == current_page || n == '...'">{{n}}</span>
   </span>)
 </div>

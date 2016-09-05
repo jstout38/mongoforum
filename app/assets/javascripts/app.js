@@ -127,6 +127,29 @@ angular.module('stoutForum', ['ui.router', 'ngMaterial', 'ngMessages', 'ngMdIcon
               return posts;
             }]
           }
+        })
+        .state('my_threads', {
+          url: '/my_threads/{page}',
+          templateUrl: 'my_threads/_my_threads.html',
+          controller: 'myThreadsCtrl',
+          resolve: {
+            results: ['Auth', 'users_admin', '$stateParams', 'posts', function(Auth, users_admin, $stateParams, posts) {
+              return Auth.currentUser().then(function(user){                                                
+                var username = user.username;                
+                var results = {}
+                results.current_page_threads = $stateParams.page;              
+                var search_hash = {user_search: username, time: 0};
+                final_results = posts.search(search_hash, 1, $stateParams.page).then(function(res){                        
+                  results.thread_results = res.data.threads;
+                  results.forum_thread_count = res.data.forum_thread_count;                  
+                  return results;                    
+
+                });
+                return final_results;
+              });              
+                            
+          }]
+            }          
         });
 
 
