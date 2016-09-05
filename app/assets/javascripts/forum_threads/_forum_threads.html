@@ -6,7 +6,7 @@
 
 <div class="pages" ng-if="forum_thread.posts.length / 10 > 1">
   Page {{current_page}} &nbsp
-  (<span ng-repeat="n in pagesArray(forum_thread)">
+  (<span ng-repeat="n in pagesArray(forum_thread) track by $index">
     <a ng-if="n != current_page" href="#/sub_forums/{{forum_thread.sub_forum_id}}/forum_threads/{{forum_thread._id}}/{{n}}">{{n}}</a>
     <span ng-if="n == current_page">{{n}}</span>
   </span>)
@@ -67,7 +67,7 @@
 
 <div class="pages" ng-if="forum_thread.posts.length / 10 > 1">
   Page {{current_page}} &nbsp
-  (<span ng-repeat="n in pagesArray(forum_thread)">
+  (<span ng-repeat="n in pagesArray(forum_thread) track by $index">
     <a ng-if="n != current_page" href="#/sub_forums/{{forum_thread.sub_forum_id}}/forum_threads/{{forum_thread._id}}/{{n}}">{{n}}</a>
     <span ng-if="n == current_page">{{n}}</span>
   </span>)

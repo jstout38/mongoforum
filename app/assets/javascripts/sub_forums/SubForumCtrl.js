@@ -26,19 +26,40 @@ angular.module('stoutForum')
    };
    $scope.pagesArray = function(thread){
       var pages = [];
-      var pageCount = thread.posts.length / 10;
-      for (var i = 0; i < pageCount; i++) {
-         pages.push(i + 1);
+      var pageCount = Math.floor((thread.posts.length - 1) / 10 ) + 1;
+      if (pageCount > 6) {
+         pages = [1, "...", pageCount - 2, pageCount - 1, pageCount];
+      }
+      else {
+         for (var i = 0; i < pageCount; i++) {
+            pages.push(i + 1);
+         }
       }
       return pages;
    };
    $scope.threadsArray = function(sub_forum){
       var pages = [];
-      var pageCount = sub_forum.forum_threads.length / 10;
-      for (var i = 0; i < pageCount; i++) {
-         pages.push(i + 1);
+      var pageCount = Math.floor((sub_forum.forum_threads.length - 1) / 10 ) + 1;
+      if (pageCount > 6 && $scope.current_page < 3) {
+         pages = [1, 2, 3, "...", pageCount];
       }
-      return pages;
+      else if (pageCount > 6 && $scope.current_page == 3) {
+         pages = [1, 2, 3, 4, "...", pageCount];
+      }
+      else if (pageCount > 6 && $scope.current_page >= 4 && $scope.current_page < pageCount - 2) {
+         pages = [1, "...", $scope.current_page - 1, $scope.current_page, parseInt($scope.current_page) + 1, "...", pageCount];
+      }
+      else if (pageCount > 6 && $scope.current_page == pageCount - 2) {
+         pages = [1, "...", $scope.current_page -1, pageCount - 2, pageCount - 1, pageCount];
+      }
+      else if (pageCount > 6 && $scope.current_page > pageCount - 2) {
+         pages = [1, "...", pageCount - 2, pageCount - 1, pageCount];
+      }
+      else {
+         for (var i = 1; i < pageCount; i++) {
+            pages.push(i);
+         }
+      }
    };   
 }
    //$scope.addPost = function(){
