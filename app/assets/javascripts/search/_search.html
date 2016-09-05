@@ -75,9 +75,9 @@
       <md-tab label="posts">
         <div class="pages" ng-if="post_count / 10 > 1">
   		  Page {{current_page_posts}} &nbsp
-  		  (<span ng-repeat="n in pagesArray(post_count)">
-    	    <span ng-if="n != current_page_posts" class="page_link" ng-click="search(n, current_page_threads)">{{n}}</span>
-    	    <span ng-if="n == current_page_posts">{{n}}</span>
+  		  (<span ng-repeat="n in pagesArray(post_count, 'post') track by $index">
+    	    <span ng-if="n != current_page_posts && n != '...'" class="page_link" ng-click="search(n, current_page_threads)">{{n}}</span>
+    	    <span ng-if="n == current_page_posts || n == '...'">{{n}}</span>
   		  </span>)
 		</div>
         <md-content class="md-padding">          
@@ -99,9 +99,9 @@
       <md-tab label="Threads">
       	<div class="pages" ng-if="forum_thread_count / 10 > 1">
   		  Page {{current_page_threads}} &nbsp
-  		  (<span ng-repeat="n in pagesArray(forum_thread_count)">
-    	    <span ng-if="n != current_page_threads" class="page_link" ng-click="search(current_page_posts, n)">{{n}}</span>
-    	    <span ng-if="n == current_page_threads">{{n}}</span>
+  		  (<span ng-repeat="n in pagesArray(forum_thread_count, 'thread') track by $index">
+    	    <span ng-if="n != current_page_threads && n != '...'" class="page_link" ng-click="search(current_page_posts, n)">{{n}}</span>
+    	    <span ng-if="n == current_page_threads || n == '...'">{{n}}</span>
   		  </span>)
 		</div>
         <md-content class="md-padding">

@@ -7,8 +7,8 @@
 <div class="pages" ng-if="forum_thread.posts.length / 10 > 1">
   Page {{current_page}} &nbsp
   (<span ng-repeat="n in pagesArray(forum_thread) track by $index">
-    <a ng-if="n != current_page" href="#/sub_forums/{{forum_thread.sub_forum_id}}/forum_threads/{{forum_thread._id}}/{{n}}">{{n}}</a>
-    <span ng-if="n == current_page">{{n}}</span>
+    <a ng-if="n != current_page && n != '...'" href="#/sub_forums/{{forum_thread.sub_forum_id}}/forum_threads/{{forum_thread._id}}/{{n}}">{{n}}</a>
+    <span ng-if="n == current_page || n == '...'">{{n}}</span>
   </span>)
 </div>
 
@@ -68,8 +68,8 @@
 <div class="pages" ng-if="forum_thread.posts.length / 10 > 1">
   Page {{current_page}} &nbsp
   (<span ng-repeat="n in pagesArray(forum_thread) track by $index">
-    <a ng-if="n != current_page" href="#/sub_forums/{{forum_thread.sub_forum_id}}/forum_threads/{{forum_thread._id}}/{{n}}">{{n}}</a>
-    <span ng-if="n == current_page">{{n}}</span>
+    <a ng-if="n != current_page && n != '...'" href="#/sub_forums/{{forum_thread.sub_forum_id}}/forum_threads/{{forum_thread._id}}/{{n}}">{{n}}</a>
+    <span ng-if="n == current_page || n == '...'">{{n}}</span>
   </span>)
 </div>
 
@@ -83,6 +83,7 @@
     </div>
     <div class="row">
       <md-input-container class="col-md-6 col-md-offset-3">        
+        <label>Type your post here!</label>
         <textarea rows="5" name="newPost" ng-model="$parent.body"></textarea>
       </md-input-container>
     </div>

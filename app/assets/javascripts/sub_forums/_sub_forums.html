@@ -6,9 +6,9 @@
 
 <div class="pages" ng-if="sub_forum.forum_threads.length / 10 > 1">
   Page {{current_page}}
-    (<span ng-repeat="n in threadsArray(sub_forum)">
-      <a ng-if="n != current_page" href="#/sub_forums/{{sub_forum._id}}/{{n}}">{{n}}</a>
-      <span ng-if="n == current_page">{{n}}</span>
+    (<span ng-repeat="n in threadsArray(sub_forum) track by $index">
+      <a ng-if="n != current_page && n != '...'" href="#/sub_forums/{{sub_forum._id}}/{{n}}">{{n}}</a>
+      <span ng-if="n == current_page || n == '...'">{{n}}</span>
     </span>)
 </div>
 
@@ -75,9 +75,9 @@
 
 <div class="pages" ng-if="sub_forum.forum_threads.length / 10 > 1">
   Page {{current_page}}
-    (<span ng-repeat="n in threadsArray(sub_forum)">
-      <a ng-if="n != current_page" href="#/sub_forums/{{sub_forum._id}}/{{n}}">{{n}}</a>
-      <span ng-if="n == current_page">{{n}}</span>
+    (<span ng-repeat="n in threadsArray(sub_forum) track by $index">
+      <a ng-if="n != current_page && n != '...'" href="#/sub_forums/{{sub_forum._id}}/{{n}}">{{n}}</a>
+      <span ng-if="n == current_page || n == '...'">{{n}}</span>
     </span>)
 </div>
 

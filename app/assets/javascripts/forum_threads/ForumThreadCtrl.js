@@ -98,7 +98,7 @@ angular.module('stoutForum')
          pages = [1, "...", pageCount - 2, pageCount - 1, pageCount];
       }
       else {
-         for (var i = 1; i < pageCount; i++) {
+         for (var i = 1; i <= pageCount; i++) {
             pages.push(i);
          }
       }

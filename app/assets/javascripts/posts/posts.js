@@ -4,8 +4,7 @@ angular.module('stoutForum')
   function($http){
   	var o = { posts: [] };
   	o.getAll = function(sub_forum_id, id, page) {
-      return $http.get('/sub_forums/' + sub_forum_id + '/forum_threads/' + id + '/posts/index/' + page + '.json').success(function(data){
-        console.log(data);
+      return $http.get('/sub_forums/' + sub_forum_id + '/forum_threads/' + id + '/posts/index/' + page + '.json').success(function(data){        
         angular.copy(data, o.posts);
       })
     };

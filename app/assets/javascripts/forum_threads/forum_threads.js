@@ -17,6 +17,7 @@ angular.module('stoutForum')
       return $http.post('/sub_forums/' + sub_forum._id + '/forum_threads.json', thread).success(function(data){
          console.log(data);
          var newURL = '#/sub_forums/' + sub_forum._id + '/1'
+         window.location.href = newURL;
          window.location.reload(newURL);
       });
     };
