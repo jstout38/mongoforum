@@ -1,6 +1,6 @@
 angular.module('stoutForum')
 .factory('posts', [
-  	'$http',
+  	'$http',    
   function($http){
   	var o = { posts: [] };
   	o.getAll = function(sub_forum_id, id, page) {
@@ -14,15 +14,18 @@ angular.module('stoutForum')
   	//  	return res.data;
   	//  })
   	//};
-    o.create = function(body, forum_thread) {
+    o.create = function(body, forum_thread, last_page) {
       return $http.post('/sub_forums/' + forum_thread.sub_forum_id + '/forum_threads/' + forum_thread._id + '/posts.json', body).success(function(data){
+        if (o.posts.length > 9) {          
+          window.location.href = '#/sub_forums/' + forum_thread.sub_forum_id + '/forum_threads/' + forum_thread._id + '/' + last_page;
+        }
         o.posts.push(data);
         var currentUser = o.posts[o.posts.length - 1].user.id;
         for (post of o.posts) {
-          if (post.upvoteser.id == currentUser) {
+          if (post.upvotes.id == currentUser) {
             post.user.postCount++;
           }
-        }
+        }        
       });
     };
     o.upvote = function(forum_thread, post) {

@@ -6,7 +6,8 @@ angular.module('stoutForum')
  'forum_threads',
  'Auth',
  '$stateParams',
- function($scope, sub_forums, sub_forum, forum_threads, Auth, $stateParams){
+ '$document',
+ function($scope, sub_forums, sub_forum, forum_threads, Auth, $stateParams, $document){
    
    $scope.current_page = $stateParams.page
    $scope.sub_forum = sub_forum;   
