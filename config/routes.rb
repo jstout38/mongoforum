@@ -21,6 +21,7 @@ Rails.application.routes.draw do
     end
   end
   get '/search/:post_page/:thread_page/:time/:keywords/:user/:topic' => 'posts#search'
+  get '/users_admin/index/:page' => 'users#index'
 
 end
   

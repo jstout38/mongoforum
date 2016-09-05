@@ -2,7 +2,9 @@ class UsersController < ApplicationController
 	before_filter :authenticate_user!, only: [:update]
 
 	def index
-	  respond_with User.all
+	  users = User.all.paginate(page: params[:page], per_page: 10)
+	  userCount = User.all.count
+	  render json: {users: users, userCount: userCount}
 	end
 
 	def show

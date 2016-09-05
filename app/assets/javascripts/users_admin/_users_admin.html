@@ -2,21 +2,67 @@
   	  	  <h1>Users</h1>
   	  	</div>
 
-        <table class="col-md-12">
-          <thead>
-          <th class="col-md-3 no-padding">Username</th>
-          <th class="centeredCell col-md-3">Email</th>
-          <th class="centeredCell col-md-3">Posts</th>
-          <th class="centeredCell col-md-3">Joined Date</th>
-        </thead>
-  	  	<tr ng-repeat="listed_user in users_admin">
-  		    <td><a href="#/users_admin/{{listed_user._id}}">{{listed_user.username}}</a></td>
-          <td class="centeredCell">{{listed_user.email}}</td>
-          <td class="centeredCell">{{listed_user.postCount}}</td>
-          <td class="centeredCell">{{listed_user.created_at}}</td>
-        </tr>
-      </table>
-  	  	
+<div class="pages" ng-if="total_users > 1">
+  Page {{current_page}} &nbsp
+  (<span ng-repeat="n in pagesArray(total_users) track by $index">
+    <a ng-if="n != current_page && n != '...'" href="#/users_admin/{{n}}">{{n}}</a>
+    <span ng-if="n == current_page || n == '...'">{{n}}</span>
+  </span>)
+</div>
+
+<md-toolbar layout="row" class="md-hue-3">
+  <div class="md-toolbar-tools">
+    <span id="forumTitle" layout="row" flex-gt-sm="100" flex>
+      <div flex-gt-sm="20" layout="column" flex>
+        Username
+      </div>
+      <div flex-gt-sm="30" layout="column" flex>
+        Email
+      </div>
+      <div flex-gt-sm="20" layout="column" flex>
+        Posts
+      </div>
+      <div flex-gt-sm="30" layout="column" flex>
+        Joined Date
+      </div>
+    </span>
+  </div>
+</md-toolbar>
+
+<md-content layout="row" flex-gt-sm="100" flex>
+  <md-list flex-gt-sm="20" layout="column" flex>
+    <md-list-item class="md-3-line" ng-repeat="listed_user in users_admin">
+      <div class="md-list-item-text" layout="column">
+        <h3><a href="#/users_admin/{{listed_user._id}}">{{listed_user.username}}</a></h3>        
+      </div>
+    </md-list-item>
+  </md-list>
+
+  <md-list flex-gt-sm="30" layout="column" flex>
+    <md-list-item class="md-2-line" ng-repeat="listed_user in users_admin">
+      <div class="md-list-item-text" layout="column">
+        <h3>{{listed_user.email}}</h3>        
+      </div>
+    </md-list-item>
+  </md-list>
+
+  <md-list flex-gt-sm="20" layout="column" flex>
+    <md-list-item class="md-2-line" ng-repeat="listed_user in users_admin">
+      <div class="md-list-item-text" layout="column">
+        <h3>{{listed_user.postCount}}</h3>        
+      </div>
+    </md-list-item>
+  </md-list>
+
+  <md-list flex-gt-sm="30" layout="column" flex>
+    <md-list-item class="md-2-line" ng-repeat="listed_user in users_admin">
+      <div class="md-list-item-text" layout="column">
+        <h3>{{listed_user.created_at}}</h3>
+      </div>
+    </md-list-item>
+  </md-list>
+</md-content>
+        
   	
 
   	  	

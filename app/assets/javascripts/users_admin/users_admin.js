@@ -2,10 +2,11 @@ angular.module('stoutForum')
 .factory('users_admin', [
   '$http',
   function($http){
-  	var o = { users_admin: [] };
-  	o.getAll = function() {
-  	  return $http.get('/users_admin.json').success(function(data){
-  	  	angular.copy(data, o.users_admin)
+  	var o = { users_admin: [], userCount: 0 };
+  	o.getAll = function(page) {
+  	  return $http.get('/users_admin/index/' + page).success(function(data){  	  	
+        angular.copy(data.users, o.users_admin);
+        o.userCount = data.userCount;        
   	  });
   	};
     o.update = function(body, user) {

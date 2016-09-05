@@ -73,7 +73,7 @@ angular.module('stoutForum', ['ui.router', 'ngMaterial', 'ngMessages', 'ngMdIcon
           }]
         })
         .state('users_admin', {
-          url: '/users_admin',
+          url: '/users_admin/{page}',
           templateUrl: 'users_admin/_users_admin.html',
           controller: 'UsersAdminCtrl',
           resolve: {
@@ -82,8 +82,8 @@ angular.module('stoutForum', ['ui.router', 'ngMaterial', 'ngMessages', 'ngMdIcon
                 return users_admin.get(user._id);
               })
             }],
-            postPromise: ['users_admin', function(users_admin){
-              return users_admin.getAll();
+            postPromise: ['users_admin', '$stateParams', function(users_admin, $stateParams){
+              return users_admin.getAll($stateParams.page);//.then(function(res, $scope) {$scope.total_pages = res.userCount;});
             }]
           }
         })
