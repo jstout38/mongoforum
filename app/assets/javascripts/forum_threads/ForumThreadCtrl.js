@@ -20,14 +20,13 @@ angular.module('stoutForum')
    $document.ready(function(){
       urlParts = $location.absUrl().split('#');
       if (urlParts.length > 2) {      
-         $location.hash(id);
+         $location.hash(urlParts[2]);
          $anchorScroll();      
       }
    });
    $scope.addPost = function(){      
       if(!$scope.body || $scope.body === '') {return;}
-      last_page = Math.floor( $scope.posts_in_thread / 10) + 1;
-      console.log(last_page);
+      last_page = Math.floor( $scope.posts_in_thread / 10) + 1;      
       posts.create({
          body: $scope.body         
       }, $scope.forum_thread, last_page);

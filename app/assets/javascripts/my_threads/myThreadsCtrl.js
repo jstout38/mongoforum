@@ -8,7 +8,7 @@ angular.module('stoutForum')
  	function($scope, $state, posts, results, $location){
  		$scope.current_page_threads = results.current_page_threads;
       $scope.thread_results = results.thread_results;
-      $scope.forum_thread_count = results.forum_thread_count;
+      $scope.forum_thread_count = results.forum_thread_count;      
       
       $scope.pagesArray = function(post_count, type){
       		var pages = [];

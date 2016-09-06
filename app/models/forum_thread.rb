@@ -2,6 +2,8 @@ class ForumThread
   include Mongoid::Document
   include Mongoid::Timestamps
 
+  #Class for forum threads. Also stores information about the last post for easy access for Angular
+
   field :subject, type: String
   field :last_post_time, type: DateTime
   field :last_post_user, type: String
@@ -13,45 +15,23 @@ class ForumThread
   
   
   def as_json(options = {})
+    #Ensures that necessary information is available in the json
     res = super(options.merge(include: :posts))
     res["user"] = User.find(res["user_id"]).as_json
-    
-
     res["_id"] = res["_id"].to_s
     res["sub_forum_id"] = res["sub_forum_id"].to_s
-    res["created_at"] = res["created_at"].strftime("%I:%M%p on %m/%d/%Y")
-    if res["last_post_time"]
-      res["last_post_time"] = res["last_post_time"].strftime("%I:%M%p on %m/%d/%Y")
-    end
+    res["created_at"] = res["created_at"].strftime("%I:%M%p on %m/%d/%Y")    
+    res["last_post_time"] = res["last_post_time"].strftime("%I:%M%p on %m/%d/%Y")
     res["sub_forum_name"] = SubForum.find(res["sub_forum_id"]).name
-    #res["last_post"] = res["last_post"].as_json
-    #res["last_post"] = res["last_post"].as_json
-    #last_post = Post.where(forum_thread_id: res["_id"]).order_by(:created_at => :desc).first.as_json
-    #res["last_post"] = last_post
-
-    #res["last_post_at"] = last_post["created_at"]
-
-
-    #user = User.find(res["posts"][-1].user._id)
-    #posts = res["posts"]
-    #last_post = posts.last
-    
-    #res["last_post_at"] = last_post["created_at"]
-    #last_post_user = User.find(last_post["user_id"]).as_json
-    #res["last_post_user"] = last_post_user
-    #res["last_post_user"] = user.username
-    #res["last_post_user"] = res["posts"][-1][:user][:username]
-
     res
   end
 
   def add_last_post(post)
+    #Sets information about last post when a new post is created
     post = Post.find(post)
     self.last_post_time = post.created_at
     self.last_post_user = post.user.username
     self.last_post_id = post.user._id
-  end
-
-  
+  end  
   
 end

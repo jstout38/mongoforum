@@ -1,6 +1,7 @@
 class User
   include Mongoid::Document
   include Mongoid::Timestamps
+  # Uses Devise for authentication
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -53,18 +54,17 @@ class User
   has_many :posts
   has_many :forum_threads
 
+  #Make sure usernames are not duplicated
   validates_uniqueness_of :username
 
   def as_json(options = {})
+    #Ensures that necessary information is available in the json
     res = super
-
     res["_id"] = res["_id"].to_s
     if res["created_at"]
       res["created_at"] = res["created_at"].strftime("%m/%d/%Y")
-    end
-   
+    end   
     res
-
   end
   
 end

@@ -86,9 +86,9 @@
     		  <md-card md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}" md-theme-watch layout="row" ng-repeat="post in results">
       			<md-card-content id="{{post._id}}" class="mainPostContainer" ng-style="downStyle" flex-gt-xs="100" layout="row">
         		  <div flex-xs flex-gt-xs="30" layout="column">                 
-          			<p><a href="#/sub_forums/{{post.sub_forum_id}}/forum_threads/{{post.forum_thread_id}}/{{post.thread_page}}#{{post._id}}">{{post.forum_thread_topic}}</a></p>
-          			<p id="timeStamp">Posted at {{post.created_at}} by <a href="#/users_admin/{{post.user_id}}">{{post.creator_name}}</a></p>
-          			<p>{{post.body}}<p> 
+          			<h4><a href="#/sub_forums/{{post.sub_forum_id}}/forum_threads/{{post.forum_thread_id}}/{{post.thread_page}}#{{post._id}}">Re: {{post.forum_thread_topic}}</a></h4>
+          			<p>{{post.body}}<p>
+                <p id="timeStamp">Posted at {{post.created_at}} by <a href="#/users_admin/user/{{post.user_id}}">{{post.creator_name}}</a></p>          			 
           		  </div>
       			</md-card-content>      
     		  </md-card>
@@ -109,7 +109,7 @@
       		<md-card-content class="mainPostContainer" ng-style="downStyle" flex-gt-xs="100" layout="row">
         	  <div flex-xs flex-gt-xs="30" layout="column">                 
           		<h3><a href="#/sub_forums/{{result.sub_forum_id}}/forum_threads/{{result._id}}/1">{{result.subject}}</a></h3>
-          		<p id="timeStamp">Created at {{result.created_at}} by <a href="#/users_admin/{{result.user._id}}">{{result.user.username}}</a></p>          			
+          		<p id="timeStamp">Created at {{result.created_at}} by <a href="#/users_admin/user/{{result.user._id}}">{{result.user.username}}</a></p>          			
           	  </div>
       		</md-card-content>      
     	  </md-card>

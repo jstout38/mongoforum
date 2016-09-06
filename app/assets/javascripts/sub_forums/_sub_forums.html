@@ -36,7 +36,7 @@
     <md-list-item class="md-3-line" ng-repeat="forum_thread in forum_threads">
       <div class="md-list-item-text" layout="column">
         <h3><a href="#/sub_forums/{{sub_forum._id}}/forum_threads/{{forum_thread._id}}/1">{{forum_thread.subject}}</a></h3>
-        <h4>by <a href="#/users_admin/{{forum_thread.user._id}}">{{forum_thread.user.username}}</a></h4>
+        <h4>by <a href="#/users_admin/user/{{forum_thread.user._id}}">{{forum_thread.user.username}}</a></h4>
         <p>
           <div ng-if="forum_thread.posts.length / 10 > 1">
             <span ng-repeat="n in pagesArray(forum_thread)">

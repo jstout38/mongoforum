@@ -88,7 +88,7 @@ angular.module('stoutForum', ['ui.router', 'ngMaterial', 'ngMessages', 'ngMdIcon
           }
         })
         .state('users_admin_edit', {
-          url: '/users_admin/edit',
+          url: '/users_admin/user/edit',
           templateUrl: 'users_admin/_users_admin_edit.html',
           controller: 'UsersAdminCtrl',
           resolve: {
@@ -108,7 +108,7 @@ angular.module('stoutForum', ['ui.router', 'ngMaterial', 'ngMessages', 'ngMdIcon
           }]
         })
         .state('users', {
-          url: '/users_admin/{id}',
+          url: '/users_admin/user/{id}',
           templateUrl: 'users_admin/_users_show.html',
           controller: 'UsersAdminCtrl',
           resolve: {
