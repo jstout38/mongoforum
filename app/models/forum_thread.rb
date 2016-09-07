@@ -7,6 +7,7 @@ class ForumThread
   field :subject, type: String
   field :last_post_time, type: DateTime
   field :last_post_user, type: String
+  field :last_post_user_id, type: String
   field :last_post_id, type: String  
 
   has_many :posts
@@ -28,10 +29,11 @@ class ForumThread
 
   def add_last_post(post)
     #Sets information about last post when a new post is created
-    post = Post.find(post)
+    post = Post.find(post)    
     self.last_post_time = post.created_at
     self.last_post_user = post.user.username
-    self.last_post_id = post.user._id
+    self.last_post_user_id = post.user._id
+    self.last_post_id = post._id
   end  
   
 end

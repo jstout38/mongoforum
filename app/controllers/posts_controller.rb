@@ -4,7 +4,7 @@ class PostsController < ApplicationController
 
 	def index
 	  @thread = ForumThread.find(params[:id])	 
-	  respond_with Post.where(forum_thread_id: @thread._id).paginate(page: params[:page], per_page: 10)	
+	  respond_with Post.where(forum_thread_id: @thread._id).order_by(created_at: "asc").paginate(page: params[:page], per_page: 10)	
 	  # => respond_with @posts.paginate(page: params[:page], per_page: 10)
 	  
 	  #respond_with ForumThread.all
@@ -19,10 +19,10 @@ class PostsController < ApplicationController
 	def create
 	  @forum_thread = ForumThread.find(params[:forum_thread_id])
 	  @sub_forum = SubForum.find(@forum_thread.sub_forum_id)
-	  @post = @forum_thread.posts.create(post_params)
+	  @post = @forum_thread.posts.create(post_params)	  
 	  page_number = (@forum_thread.posts.length - 1) / 10 + 1
 	  @post.addUser(current_user, page_number)	  
-	  @post.save	  
+	  @post.save	  	  
 	  @forum_thread.add_last_post(@post)
 	  @forum_thread.save
 	  @sub_forum.add_last_post(@post)

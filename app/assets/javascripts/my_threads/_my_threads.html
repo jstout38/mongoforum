@@ -16,9 +16,9 @@
           <md-card md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}" md-theme-watch layout="row" ng-repeat="result in thread_results">
       		<md-card-content class="mainPostContainer" ng-style="downStyle" flex-gt-xs="100" layout="row">
         	  <div flex-xs flex-gt-xs="30" layout="column">                 
-          		<h3><a href="#/sub_forums/{{result.sub_forum_id}}/forum_threads/{{result._id}}/1">{{result.subject}}</a></h3>
+          		<h3><a href="#/sub_forums/{{result.sub_forum_id}}/forum_threads/{{result._id}}/{{pageCount(result.posts.length)}}#{{result.last_post_id}}">{{result.subject}}</a></h3>
           		<p id="timeStamp">Created at {{result.created_at}} by <a href="#/users_admin/user/{{result.user._id}}">{{result.user.username}}</a></p>
-              <p>Last post at {{result.last_post_time}} by <a href="#/users_admin/{{result.last_post_id}}">{{result.last_post_user}}</a></p>          			
+              <p>Last post at {{result.last_post_time}} by <a href="#/users_admin/user/{{result.last_post_user_id}}">{{result.last_post_user}}</a></p>          			
           	  </div>
       		</md-card-content>      
     	  </md-card>
