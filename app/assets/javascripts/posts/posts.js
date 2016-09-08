@@ -20,7 +20,7 @@ angular.module('stoutForum')
         }
         o.posts.push(data);
         var currentUser = o.posts[o.posts.length - 1].user.id;
-        for (post of o.posts) {
+        for (post in o.posts) {
           if (post.upvotes.id == currentUser) {
             post.user.postCount++;
           }
