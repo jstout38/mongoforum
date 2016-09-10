@@ -14,7 +14,9 @@ class SubForum
     #Ensures that necessary information is available in the json
   	res = super(options.merge(include: :forum_threads))
     res["_id"] = res["_id"].to_s
-    res["last_post_time"] = res["last_post_time"].strftime("%I:%M%p on %m/%d/%Y")
+    if res["last_post_time"]
+      res["last_post_time"] = res["last_post_time"].strftime("%I:%M%p on %m/%d/%Y")
+    end
     res
   end
 
