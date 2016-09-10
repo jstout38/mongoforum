@@ -21,7 +21,7 @@
 @import 'https://fonts.googleapis.com/css?family=Baloo+Da';
 
 body {
-	background-color: #FAFAFA;
+	background-color: #FAFAFA !important;
 }
 
 .forumTable > td {
