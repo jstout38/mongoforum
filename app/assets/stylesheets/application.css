@@ -108,20 +108,12 @@ body {
 #userName {
 	font-family: 'Baloo Da', cursive; 
 	font-size: 200%;
-	margin-bottom: 0px;
+	margin-bottom: 0;
 }
 
 #forumTitle {
 	font-family: 'Baloo Da', cursive;
 	font-size: 150%;
-}
-	
-#threadCreationContainer {
-	
-}
-
-#threadIntro {
-	
 }
 
 .form-control {
@@ -159,7 +151,7 @@ md-input-container {
   width: 100%; }
 
 .no-padding {
-	padding: 0px;
+	padding: 0;
 }
 
 .votes {
