@@ -1,5 +1,6 @@
 class SubForum
   include Mongoid::Document
+  include Mongoid::Timestamps
 
   #Class for subforums. Also stores information about the last post for easy access for Angular
 
