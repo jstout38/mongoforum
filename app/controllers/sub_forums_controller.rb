@@ -1,7 +1,7 @@
 class SubForumsController < ApplicationController
 
 	def index
-	  respond_with SubForum.all
+	  respond_with SubForum.all.order_by(created_at: "asc")
 	end
 
 	def show
