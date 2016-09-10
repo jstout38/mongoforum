@@ -1,0 +1,124 @@
+<div class="page-header">
+	<h1>Search Posts</h1>
+</div>
+
+<md-content layout-padding>
+<form ng-submit="search(1, 1)" name="searchForm">
+		
+				<div class="row">
+				<md-input-container class="col-md-4">
+				<label>Keywords (must be at least 3 characters long)</label>
+				<input md-maxlength="40" name="post_search" ng-model="search_hash.post_search">				
+				</md-input-container>
+				<md-input-container class="col-md-4">
+				<label>Username</label>
+				<input md-maxlength="40" name="user_search" ng-model="search_hash.user_search">				
+				</md-input-container>
+				<md-input-container class="col-md-4">
+				<label>Topic</label>
+				<input md-maxlength="40" name="thread_search" ng-model="search_hash.thread_search">
+				</md-input-container>
+				</div>				
+				<!--
+				<div class="row">
+				<md-input-container class="col-md-4 col-md-offset-4">
+				<label>Password</label>
+				<input type="password" minlength="8" md-maxlength="30" required name="password" ng-model="user.password">
+				<div ng-messages="loginForm.password.$error" multiple md-auto-hide="false">
+					<div ng-message="required">Required.</div>
+					<div ng-message="md-maxlength">Password must be less than 30 characters long.</div>
+					<div ng-message="minlength">Password must be at least 8 characters long.</div>
+				</div>
+				</md-input-container>								
+				</div>
+				-->
+				<div class="row col-md-12">
+				  <md-input-container class="col-md-4 col-md-offset-4" flex-gt-sm>
+            		<label>Search Posts From:</label>
+            		<md-select ng-model="search_hash.time">
+              		  <md-option selected value=7>
+                	    Last Week
+              		  </md-option>
+              		  <md-option value=30>
+              		    Last Month
+              		  </md-option>
+              		  <md-option value=365>
+              		    Last Year
+              		  </md-option>
+              		  <md-option value=0>
+              		    All Time
+              		  </md-option>
+            		</md-select>
+          		  </md-input-container>
+          		</div>
+				<div class="row col-md-12">		
+				  <md-button class="login-button" type="submit">Search!</md-button>
+				  <div class="errorContainer">{{responseMessage["error"]}}</div>
+				</div>		
+	
+</form>
+</md-content>
+
+<!--<div class="pages" ng-if="posts.length / 10 > 1">
+  Page {{current_page}} &nbsp
+  (<span ng-repeat="n in pagesArray(forum_thread)">
+    <a ng-if="n != current_page" href="#/sub_forums/{{forum_thread.sub_forum_id}}/forum_threads/{{forum_thread._id}}/{{n}}">{{n}}</a>
+    <span ng-if="n == current_page">{{n}}</span>
+  </span>)
+</div>-->
+
+
+
+<div ng-cloak>
+  <md-content ng-if="results.length > 0">
+    <md-tabs md-dynamic-height md-border-bottom>
+      <md-tab label="posts">
+        <div class="pages" ng-if="post_count / 10 > 1">
+  		  Page {{current_page_posts}} &nbsp
+  		  (<span ng-repeat="n in pagesArray(post_count, 'post') track by $index">
+    	    <span ng-if="n != current_page_posts && n != '...'" class="page_link" ng-click="search(n, current_page_threads)">{{n}}</span>
+    	    <span ng-if="n == current_page_posts || n == '...'">{{n}}</span>
+  		  </span>)
+		</div>
+        <md-content class="md-padding">          
+          <md-content class="md-padding" layout-xs="column" layout="row">
+  			<div flex-xs flex-gt-xs="100" layout="column">
+    		  <md-card md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}" md-theme-watch layout="row" ng-repeat="post in results">
+      			<md-card-content id="{{post._id}}" class="mainPostContainer" ng-style="downStyle" flex-gt-xs="100" layout="row">
+        		  <div flex-xs flex-gt-xs="30" layout="column">                 
+          			<h4><a href="#/sub_forums/{{post.sub_forum_id}}/forum_threads/{{post.forum_thread_id}}/{{post.thread_page}}#{{post._id}}">Re: {{post.forum_thread_topic}}</a></h4>
+          			<p>{{post.body}}<p>
+                <p id="timeStamp">Posted at {{post.created_at}} by <a href="#/users_admin/user/{{post.user_id}}">{{post.creator_name}}</a></p>          			 
+          		  </div>
+      			</md-card-content>      
+    		  </md-card>
+  			</div>
+		  </md-content>
+        </md-content>
+      </md-tab>
+      <md-tab label="Threads">
+      	<div class="pages" ng-if="forum_thread_count / 10 > 1">
+  		  Page {{current_page_threads}} &nbsp
+  		  (<span ng-repeat="n in pagesArray(forum_thread_count, 'thread') track by $index">
+    	    <span ng-if="n != current_page_threads && n != '...'" class="page_link" ng-click="search(current_page_posts, n)">{{n}}</span>
+    	    <span ng-if="n == current_page_threads || n == '...'">{{n}}</span>
+  		  </span>)
+		</div>
+        <md-content class="md-padding">
+          <md-card md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}" md-theme-watch layout="row" ng-repeat="result in thread_results">
+      		<md-card-content class="mainPostContainer" ng-style="downStyle" flex-gt-xs="100" layout="row">
+        	  <div flex-xs flex-gt-xs="30" layout="column">                 
+          		<h3><a href="#/sub_forums/{{result.sub_forum_id}}/forum_threads/{{result._id}}/1">{{result.subject}}</a></h3>
+          		<p id="timeStamp">Created at {{result.created_at}} by <a href="#/users_admin/user/{{result.user._id}}">{{result.user.username}}</a></p>          			
+          	  </div>
+      		</md-card-content>      
+    	  </md-card>
+          
+        </md-content>
+      </md-tab>      
+    </md-tabs>
+  </md-content>
+  <md-content ng-if="results.length == 0">
+  	No results found!
+  </md-content>
+</div>

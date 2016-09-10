@@ -1,0 +1,96 @@
+<div class="page-header">
+  <h1>
+    <a href="#/sub_forums/{{forum_thread.sub_forum_id}}/1">{{forum_thread.sub_forum_name}}</a> > {{forum_thread.subject}}
+  </h1>
+</div>
+
+<div class="pages" ng-if="forum_thread.posts.length / 10 > 1">
+  Page {{current_page}} &nbsp
+  (<span ng-repeat="n in pagesArray(forum_thread) track by $index">
+    <a ng-if="n != current_page && n != '...'" href="#/sub_forums/{{forum_thread.sub_forum_id}}/forum_threads/{{forum_thread._id}}/{{n}}">{{n}}</a>
+    <span ng-if="n == current_page || n == '...'">{{n}}</span>
+  </span>)
+</div>
+
+<md-toolbar layout="row" class="md-hue-3">
+  <div class="md-toolbar-tools">
+    <span id="forumTitle">{{forum_thread.subject}}</span>
+  </div>
+</md-toolbar>
+
+<md-content class="md-padding" layout-xs="column" layout="row">
+  <div flex-xs flex-gt-xs="100" layout="column">
+    <md-card md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}" md-theme-watch layout="row" ng-repeat="post in posts">      
+      <md-card-content class="mainPostContainer" ng-if="post.upvotes - post.downvotes > -1 || showAllPosts" ng-style="downStyle" flex-gt-xs="100" layout="row">
+        <div flex-xs flex-gt-xs="30" layout="column">
+          <img ng-if="hasAvatar(post)" id="avatar" width="100" src="{{post.user.avatar}}">
+          <a href="#/users_admin/user/{{post.user_id}}"><p id="userName">{{post.user.username}}</p></a>
+          <p>Posts: {{post.user.postCount}}</p>
+          <div id="socialMedia">
+            <a ng-if="hasTwitter(post)" class="btn btn-social-icon btn-m btn-twitter" href="{{post.user.twitter}}">
+              <span class="fa fa-twitter"></span>
+            </a>
+            <a ng-if="hasFacebook(post)" class="btn btn-social-icon btn-m btn-facebook" href="{{post.user.facebook}}">
+              <span class="fa fa-facebook"></span>
+            </a>                 
+            <a ng-if="hasPinterest(post)" class="btn btn-social-icon btn-m btn-pinterest" href="{{post.user.pinterest}}">
+              <span class="fa fa-pinterest"></span>
+            </a>                 
+            <a ng-if="hasLinkedIn(post)" class="btn btn-social-icon btn-m btn-linkedin" href="{{post.user.linked_in}}">
+              <span class="fa fa-linkedin"></span>
+            </a>                 
+          </div>
+        </div>
+        <div id="{{post._id}}" flex-gt-xs="70" layout="column">
+          <div>
+            <p id="timeStamp">Posted at {{post.created_at}}</p><p>{{post.body}}<p>
+            <div ng-if="hasSignature(post)" id="signatureWrapper">
+              <p>____________________</p>
+              {{post.user.signature}}
+            </div>
+            <div id="voting">                  
+              <p>____________________</p>
+              <ng-md-icon icon="thumb_up" ng-click="incrementUpvotes(forum_thread, post)"></ng-md-icon>  <span class="votes"> {{post.upvotes}} </span>
+              <ng-md-icon icon="thumb_down" ng-click="incrementDownvotes(forum_thread, post)"></ng-md-icon>  
+              <span class="votes downvoteRed" ng-if="post.downvotes > post.upvotes"> {{post.downvotes}} </span>
+              <span class="votes" ng-if="post.upvotes >= post.downvotes"> {{post.downvotes}} </span>
+            </div>
+          </div>
+        </div>
+      </md-card-content>
+      <md-card-content class="downvotedPostMessage" ng-if="post.upvotes - post.downvotes < 0 && !showAllPosts" ng-click="showPosts()" flex-gt-xs="100" layout="row">
+        Post hidden due to downvotes. Click to show all posts!
+      </md-card-content>      
+    </md-card>
+  </div>
+</md-content>
+
+<div class="pages" ng-if="forum_thread.posts.length / 10 > 1">
+  Page {{current_page}} &nbsp
+  (<span ng-repeat="n in pagesArray(forum_thread) track by $index">
+    <a ng-if="n != current_page && n != '...'" href="#/sub_forums/{{forum_thread.sub_forum_id}}/forum_threads/{{forum_thread._id}}/{{n}}">{{n}}</a>
+    <span ng-if="n == current_page || n == '...'">{{n}}</span>
+  </span>)
+</div>
+
+
+<md-content layout-padding ng-if="isLoggedIn()">
+  <form ng-submit="addPost()" name="postForm">
+    <div class="row">
+      <div class="postLabel col-md-6 col-md-offset-3">
+        Make a new post!
+      </div>
+    </div>
+    <div class="row">
+      <md-input-container class="col-md-6 col-md-offset-3">        
+        <label>Type your post here!</label>
+        <textarea rows="5" name="newPost" ng-model="$parent.body"></textarea>
+      </md-input-container>
+    </div>
+      <div class="row">   
+      <div class="col-md-offset-3">
+        <md-button type="submit">Post</md-button>
+      </div>
+    </div>
+  </form>
+</md-content>  	

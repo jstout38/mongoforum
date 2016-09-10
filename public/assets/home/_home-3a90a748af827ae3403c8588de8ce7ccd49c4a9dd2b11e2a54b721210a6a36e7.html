@@ -1,0 +1,47 @@
+<div class="page-header">
+  <h1>StoutForum</h1>
+</div> 	
+
+<md-toolbar layout="row" class="md-hue-3">
+  <div class="md-toolbar-tools">
+    <span id="forumTitle" layout="row" flex-gt-sm="100" flex>
+      <div flex-gt-sm="30" layout="column" flex>
+        Forum
+      </div>
+      <div flex-gt-sm="20" layout="column" flex>
+        Threads
+      </div>
+      <div flex-gt-sm="40" layout="column" flex>
+        Last Post
+      </div>
+    </span>
+  </div>
+</md-toolbar>
+
+<md-content layout="row" flex-gt-sm="100" flex>
+  <md-list flex-gt-sm="30" layout="column" flex>
+    <md-list-item class="md-2-line" ng-repeat="sub_forum in sub_forums">
+      <div class="md-list-item-text" layout="column">
+        <h3><a href="#/sub_forums/{{sub_forum._id}}/1">Forum - {{sub_forum.name}}</a></h3>               
+      </div>
+    </md-list-item>
+  </md-list>
+
+  <md-list flex-gt-sm="20" layout="column" flex>
+    <md-list-item class="md-2-line" ng-repeat="sub_forum in sub_forums">
+      <div class="md-list-item-text" layout="column">
+        <h3>{{sub_forum.forum_threads.length}}</h3>        
+      </div>
+    </md-list-item>
+  </md-list>
+
+  <md-list flex-gt-sm="40" layout="column" flex>
+    <md-list-item class="md-2-line" ng-repeat="sub_forum in sub_forums">
+      <div class="md-list-item-text" layout="column">
+        <h3>Last post at {{sub_forum.last_post_time}} by 
+          <a href="#/users_admin/user/{{sub_forum.last_post_id}}">{{sub_forum.last_post_user}}</a></h3>        
+      </div>
+    </md-list-item>
+  </md-list>  
+</md-content>
+  	  
