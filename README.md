@@ -6,10 +6,22 @@ The Ruby on Rails application uses MongoDB, a NoSQL, document-based data store. 
 
 Current features include:
 
--Avatars and profile information  -Signatures  -Upvoting and downvoting  -Hidden posts based on user ratings  -User listing  -My Threads page  -Search by post keywords, username, or topic
+-Avatars and profile information  
+-Signatures  
+-Upvoting and downvoting  
+-Hidden posts based on user ratings  
+-User listing  
+-My Threads page  
+-Search by post keywords, username, or topic
 
 Upcoming features will include:
 
--Password verification and email confirmation  -Top rated post listings  -Sortable user list  -Private messages  -Friend/Foe lists  -oAuth authentication  -Quoting and other post formatting
+-Password verification and email confirmation  
+-Top rated post listings  
+-Sortable user list  
+-Private messages  
+-Friend/Foe lists  
+-oAuth authentication  
+-Quoting and other post formatting
 
 A fully deployed version of the application is hosted on Heroku at https://aqueous-tundra-43580.herokuapp.com/.
