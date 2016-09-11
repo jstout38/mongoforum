@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   skip_before_filter  :verify_authenticity_token
 
+  #Set API responses to JSON
   respond_to :json
 
   before_action :configure_permitted_parameters, if: :devise_controller?
@@ -14,7 +15,8 @@ class ApplicationController < ActionController::Base
 
   private
   def configure_permitted_parameters
-  	  devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:email, :password, :username, :website, :facebook, :twitter, :pinterest, :linked_in, :location, :occupation, :interests, :birthday, :signature, :avatar) }
+  	  #Sanitize parameters for Devise transactions
+      devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:email, :password, :username, :website, :facebook, :twitter, :pinterest, :linked_in, :location, :occupation, :interests, :birthday, :signature, :avatar) }
       devise_parameter_sanitizer.for(:sign_in) << :username
   end
 
