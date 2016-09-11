@@ -1,28 +1,35 @@
 Rails.application.routes.draw do
-
-  devise_for :users
-  resources :users_admin, :controller => 'users' 
-  root to: 'application#angular'
-  resources :sub_forums, only: [:index, :show] do
-      member do
-        get '/:controller/:action/:page'
-      end
-    resources :forum_threads do
-      member do
-        get '/:controller/:action/:page'        
-      end
-      resources :posts do
+    #Devise routing
+    devise_for :users
+    #Must use a different name for other user functions to avoid conflict with Devise
+    resources :users_admin, :controller => 'users' 
+    #Set root page to angular routing
+    root to: 'application#angular'
+    #Routing for the API
+    resources :sub_forums, only: [:index, :show] do
+        #Create a route that allows for a page parameter to be passed
         member do
-          get '/:controller/:action/:page'
-          put '/upvote' => 'posts#upvote'
-          put '/downvote' => 'posts#downvote'                    
-        end        
-      end
+            get '/:controller/:action/:page'
+        end
+        resources :forum_threads do
+            #Create a route that allows for a page parameter to be passed
+            member do
+                get '/:controller/:action/:page'        
+            end
+            resources :posts do
+                #Create a route that allows for a page parameter to be passed and routes for upvoting and downvoting
+                member do
+                    get '/:controller/:action/:page'
+                    put '/upvote' => 'posts#upvote'
+                    put '/downvote' => 'posts#downvote'                    
+                end        
+            end
+        end
     end
-  end
-  get '/search/:post_page/:thread_page/:time/:keywords/:user/:topic' => 'posts#search'
-  get '/users_admin/index/:page' => 'users#index'
-
+    #Create a route that passes all of the necessary params for a search
+    get '/search/:post_page/:thread_page/:time/:keywords/:user/:topic' => 'posts#search'
+    #Create a route for the paginated user index
+    get '/users_admin/index/:page' => 'users#index'
 end
   
   # The priority is based upon order of creation: first created -> highest priority.
