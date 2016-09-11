@@ -31,8 +31,8 @@ class ForumThreadsController < ApplicationController
       forum_thread.save
       sub_forum.save
       #Update the current users post count and save
-      current_user = User.find(current_user)
-      current_user.postCount = current_user.postCount + 1
+      current_user_object = User.find(current_user)
+      current_user.postCount = current_user_object.postCount + 1
       current_user.save
       #Respond with the created forum thread
       respond_with forum_thread, location: nil
